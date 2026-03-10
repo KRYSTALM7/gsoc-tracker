@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GSoC 2026 · Sprint Tracker</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GSoC 2026 · Sprint Tracker</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Mono:wght@400;500&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,700&display=swap');
+
 :root {
   --bg: #08090c;
   --bg2: #0f1117;
@@ -37,30 +38,29 @@
   --r2: 6px;
 }
 
-*{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
+/* ─── RESET ─── */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 
 body {
-  font-family: 'Outfit', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   background: var(--bg);
   color: var(--text);
   min-height: 100vh;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* ─── SCROLLBAR ─── */
-::-webkit-scrollbar{width:5px;height:5px;}
-::-webkit-scrollbar-track{background:var(--bg);}
-::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px;}
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
 
-/* ─── LOGIN SCREEN ─── */
+/* ─── LOGIN ─── */
 #loginScreen {
   position: fixed; inset: 0;
   background: var(--bg);
   display: flex; align-items: center; justify-content: center;
   z-index: 9999;
-  flex-direction: column;
-  gap: 0;
 }
 
 .login-glow {
@@ -83,7 +83,7 @@ body {
 }
 
 .login-logo {
-  font-family: 'Syne', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.15em;
@@ -105,9 +105,9 @@ body {
 }
 
 .login-title {
-  font-family: 'Syne', sans-serif;
-  font-size: 28px;
-  font-weight: 800;
+  font-family: 'Fraunces', serif;
+  font-size: 26px;
+  font-weight: 600;
   color: var(--text);
   margin-bottom: 6px;
   line-height: 1.2;
@@ -119,9 +119,7 @@ body {
   margin-bottom: 32px;
 }
 
-.login-field {
-  margin-bottom: 16px;
-}
+.login-field { margin-bottom: 16px; }
 
 .login-field label {
   display: block;
@@ -141,14 +139,12 @@ body {
   padding: 11px 14px;
   font-size: 14px;
   color: var(--text);
-  font-family: 'Space Mono', monospace;
+  font-family: 'DM Mono', monospace;
   outline: none;
   transition: border-color 0.2s;
 }
 
-.login-field input:focus {
-  border-color: var(--accent);
-}
+.login-field input:focus { border-color: var(--accent); }
 
 .login-btn {
   width: 100%;
@@ -157,7 +153,7 @@ body {
   border: none;
   border-radius: 8px;
   padding: 12px;
-  font-family: 'Syne', sans-serif;
+  font-family: 'Fraunces', serif;
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.05em;
@@ -166,51 +162,18 @@ body {
   transition: opacity 0.2s, transform 0.1s;
 }
 
-.login-btn:hover{opacity:0.9;}
-.login-btn:active{transform:scale(0.99);}
+.login-btn:hover { opacity: 0.9; }
+.login-btn:active { transform: scale(0.99); }
+.login-error { color: var(--red); font-size: 12px; margin-top: 10px; text-align: center; min-height: 16px; }
 
-.login-error {
-  color: var(--red);
-  font-size: 12px;
-  margin-top: 10px;
-  text-align: center;
-  min-height: 16px;
-}
-
-.login-hint {
-  font-size: 11px;
-  color: var(--text3);
-  text-align: center;
-  margin-top: 20px;
-  font-family: 'Space Mono', monospace;
-}
-
-/* ─── SETUP SCREEN ─── */
-#setupScreen {
-  position: fixed; inset: 0;
-  background: var(--bg);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 9998;
-}
-
-.setup-card {
-  background: var(--surface);
-  border: 1px solid var(--border2);
-  border-radius: 16px;
-  padding: 44px 48px;
-  width: 440px;
-}
-
-/* ─── APP LAYOUT ─── */
+/* ─── APP ─── */
 #app { display: none; flex-direction: column; min-height: 100vh; }
 
 /* ─── TOPBAR ─── */
 .topbar {
   position: sticky; top: 0; z-index: 100;
-  background: rgba(8,9,12,0.9);
-  backdrop-filter: blur(12px);
+  background: rgba(8,9,12,0.92);
+  backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border);
   padding: 0 32px;
   height: 56px;
@@ -220,9 +183,9 @@ body {
 }
 
 .topbar-logo {
-  font-family: 'Syne', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: 15px;
-  font-weight: 800;
+  font-weight: 700;
   color: var(--accent);
   letter-spacing: 0.06em;
   display: flex;
@@ -230,12 +193,7 @@ body {
   gap: 10px;
 }
 
-.topbar-logo i { font-size: 14px; }
-
-.topbar-nav {
-  display: flex;
-  gap: 4px;
-}
+.topbar-nav { display: flex; gap: 4px; }
 
 .nav-btn {
   padding: 6px 14px;
@@ -247,26 +205,23 @@ body {
   transition: all 0.15s;
   border: none;
   background: none;
-  font-family: 'Outfit', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   display: flex;
   align-items: center;
   gap: 6px;
+  letter-spacing: 0.01em;
 }
 
 .nav-btn:hover { color: var(--text); background: var(--surface2); }
 .nav-btn.active { color: var(--accent); background: var(--accent-dim); }
-.nav-btn.org-ml4sci.active { color: var(--ml4sci); background: rgba(100,255,218,0.1); }
+.nav-btn.org-ml4sci.active  { color: var(--ml4sci);  background: rgba(100,255,218,0.1); }
 .nav-btn.org-kubeflow.active { color: var(--kubeflow); background: rgba(126,179,255,0.1); }
-.nav-btn.org-airflow.active { color: var(--airflow); background: rgba(255,159,67,0.1); }
+.nav-btn.org-airflow.active  { color: var(--airflow);  background: rgba(255,159,67,0.1); }
 
-.topbar-right {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
+.topbar-right { display: flex; align-items: center; gap: 10px; }
 
 .topbar-deadline {
-  font-family: 'Space Mono', monospace;
+  font-family: 'DM Mono', monospace;
   font-size: 11px;
   color: var(--red);
   background: var(--red-dim);
@@ -285,8 +240,8 @@ body {
 }
 
 @keyframes pulse {
-  0%,100%{opacity:1;transform:scale(1);}
-  50%{opacity:0.4;transform:scale(0.8);}
+  0%,100% { opacity:1; transform:scale(1); }
+  50%      { opacity:0.4; transform:scale(0.8); }
 }
 
 .logout-btn {
@@ -297,17 +252,22 @@ body {
   color: var(--text3);
   font-size: 12px;
   cursor: pointer;
-  font-family: 'Outfit', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   transition: all 0.15s;
 }
 
 .logout-btn:hover { color: var(--text); border-color: var(--text3); }
 
 /* ─── PAGES ─── */
-.page { display: none; padding: 32px; max-width: 1200px; margin: 0 auto; }
-.page.active { display: block; }
+.page { display: none; padding: 32px; max-width: 1200px; margin: 0 auto; width: 100%; }
+.page.active { display: block; animation: fadeUp 0.3s ease both; }
 
-/* ─── HERO SECTION ─── */
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(10px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+
+/* ─── HERO ─── */
 .page-hero {
   margin-bottom: 32px;
   display: flex;
@@ -317,28 +277,25 @@ body {
 }
 
 .page-title {
-  font-family: 'Syne', sans-serif;
-  font-size: 32px;
-  font-weight: 800;
+  font-family: 'Fraunces', serif;
+  font-size: 30px;
+  font-weight: 600;
   color: var(--text);
   line-height: 1.1;
   margin-bottom: 6px;
 }
 
-.page-title .accent { color: var(--accent); }
-.page-title .accent-pink { color: var(--accent2); }
-.page-title .accent-blue { color: var(--blue); }
+.page-title .accent       { color: var(--accent); }
+.page-title .accent-pink  { color: var(--accent2); }
+.page-title .accent-blue  { color: var(--blue); }
 .page-title .accent-amber { color: var(--amber); }
 
-.page-sub {
-  font-size: 13px;
-  color: var(--text3);
-}
+.page-sub { font-size: 13px; color: var(--text3); }
 
 /* ─── STAT CARDS ─── */
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4,1fr);
   gap: 12px;
   margin-bottom: 28px;
 }
@@ -351,7 +308,6 @@ body {
   position: relative;
   overflow: hidden;
   transition: border-color 0.2s;
-  cursor: default;
 }
 
 .stat-card:hover { border-color: var(--border2); }
@@ -363,9 +319,9 @@ body {
   height: 1px;
 }
 
-.stat-accent-green::after { background: linear-gradient(90deg, var(--accent), transparent); }
-.stat-accent-pink::after { background: linear-gradient(90deg, var(--accent2), transparent); }
-.stat-accent-blue::after { background: linear-gradient(90deg, var(--blue), transparent); }
+.stat-accent-green::after { background: linear-gradient(90deg, var(--green), transparent); }
+.stat-accent-pink::after  { background: linear-gradient(90deg, var(--accent2), transparent); }
+.stat-accent-blue::after  { background: linear-gradient(90deg, var(--blue), transparent); }
 .stat-accent-amber::after { background: linear-gradient(90deg, var(--amber), transparent); }
 
 .stat-label {
@@ -378,26 +334,18 @@ body {
 }
 
 .stat-value {
-  font-family: 'Syne', sans-serif;
-  font-size: 30px;
-  font-weight: 800;
+  font-family: 'Fraunces', serif;
+  font-size: 28px;
+  font-weight: 600;
   color: var(--text);
   line-height: 1;
   margin-bottom: 4px;
 }
 
-.stat-value .unit {
-  font-size: 14px;
-  color: var(--text3);
-  font-weight: 400;
-}
+.stat-value .unit { font-size: 14px; color: var(--text3); font-weight: 400; font-family: 'DM Sans', sans-serif; }
+.stat-sub { font-size: 11px; color: var(--text3); }
 
-.stat-sub {
-  font-size: 11px;
-  color: var(--text3);
-}
-
-/* ─── SECTION TITLES ─── */
+/* ─── SECTION HEADERS ─── */
 .section-head {
   display: flex;
   align-items: center;
@@ -407,9 +355,9 @@ body {
 }
 
 .section-title {
-  font-family: 'Syne', sans-serif;
-  font-size: 16px;
-  font-weight: 700;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
   color: var(--text);
   display: flex;
   align-items: center;
@@ -417,37 +365,29 @@ body {
 }
 
 .section-title i { font-size: 14px; color: var(--text3); }
+.section-meta { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--text3); }
 
-.section-meta {
-  font-family: 'Space Mono', monospace;
-  font-size: 10px;
-  color: var(--text3);
-}
-
-/* ─── ADD BUTTON ─── */
+/* ─── BUTTONS ─── */
 .add-btn {
-  display: flex;
-  align-items: center;
-  gap: 6px;
+  display: flex; align-items: center; gap: 6px;
   padding: 6px 14px;
   background: var(--accent-dim);
   border: 1px solid rgba(100,255,218,0.3);
   border-radius: var(--r2);
   color: var(--accent);
-  font-size: 12px;
-  font-weight: 500;
+  font-size: 12px; font-weight: 500;
   cursor: pointer;
   transition: all 0.15s;
-  font-family: 'Outfit', sans-serif;
+  font-family: 'DM Sans', sans-serif;
 }
 
-.add-btn:hover { background: rgba(100,255,218,0.18); }
-.add-btn-blue { background: var(--blue-dim); border-color: rgba(126,179,255,0.3); color: var(--blue); }
-.add-btn-blue:hover { background: rgba(126,179,255,0.18); }
-.add-btn-amber { background: var(--amber-dim); border-color: rgba(255,210,127,0.3); color: var(--amber); }
+.add-btn:hover       { background: rgba(100,255,218,0.18); }
+.add-btn-blue        { background: var(--blue-dim); border-color: rgba(126,179,255,0.3); color: var(--blue); }
+.add-btn-blue:hover  { background: rgba(126,179,255,0.18); }
+.add-btn-amber       { background: var(--amber-dim); border-color: rgba(255,210,127,0.3); color: var(--amber); }
 .add-btn-amber:hover { background: rgba(255,210,127,0.18); }
-.add-btn-pink { background: var(--accent2-dim); border-color: rgba(255,107,157,0.3); color: var(--accent2); }
-.add-btn-pink:hover { background: rgba(255,107,157,0.18); }
+.add-btn-pink        { background: var(--accent2-dim); border-color: rgba(255,107,157,0.3); color: var(--accent2); }
+.add-btn-pink:hover  { background: rgba(255,107,157,0.18); }
 
 /* ─── TABLES ─── */
 .table-wrap {
@@ -485,72 +425,58 @@ tbody tr:hover { background: rgba(255,255,255,0.015); }
 
 /* ─── BADGES ─── */
 .badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
+  display: inline-flex; align-items: center; gap: 4px;
   padding: 3px 9px;
   border-radius: 20px;
-  font-size: 10.5px;
-  font-weight: 600;
+  font-size: 10.5px; font-weight: 600;
   letter-spacing: 0.03em;
   white-space: nowrap;
 }
 
-.badge-green { background: var(--green-dim); color: var(--green); }
-.badge-blue { background: var(--blue-dim); color: var(--blue); }
-.badge-amber { background: var(--amber-dim); color: var(--amber); }
-.badge-red { background: var(--red-dim); color: var(--red); }
-.badge-pink { background: var(--accent2-dim); color: var(--accent2); }
-.badge-cyan { background: var(--accent-dim); color: var(--accent); }
-.badge-gray { background: rgba(255,255,255,0.05); color: var(--text3); }
-.badge-ml4sci { background: rgba(100,255,218,0.1); color: var(--ml4sci); }
+.badge-green    { background: var(--green-dim);   color: var(--green); }
+.badge-blue     { background: var(--blue-dim);    color: var(--blue); }
+.badge-amber    { background: var(--amber-dim);   color: var(--amber); }
+.badge-red      { background: var(--red-dim);     color: var(--red); }
+.badge-pink     { background: var(--accent2-dim); color: var(--accent2); }
+.badge-cyan     { background: var(--accent-dim);  color: var(--accent); }
+.badge-gray     { background: rgba(255,255,255,0.05); color: var(--text3); }
+.badge-ml4sci   { background: rgba(100,255,218,0.1); color: var(--ml4sci); }
 .badge-kubeflow { background: rgba(126,179,255,0.1); color: var(--kubeflow); }
-.badge-airflow { background: rgba(255,159,67,0.1); color: var(--airflow); }
+.badge-airflow  { background: rgba(255,159,67,0.1);  color: var(--airflow); }
 
 /* ─── LINKS ─── */
 .link-cell {
   color: var(--accent);
-  font-family: 'Space Mono', monospace;
+  font-family: 'DM Mono', monospace;
   font-size: 11px;
   text-decoration: none;
   opacity: 0.8;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
+  display: inline-flex; align-items: center; gap: 4px;
 }
 
 .link-cell:hover { opacity: 1; text-decoration: underline; }
 .link-none { color: var(--text3); font-size: 11px; font-style: italic; }
 
-/* ─── ACTION BUTTONS in table ─── */
-.row-actions {
-  display: flex;
-  gap: 6px;
-  opacity: 0;
-  transition: opacity 0.15s;
-}
-
+/* ─── ROW ACTIONS ─── */
+.row-actions { display: flex; gap: 6px; opacity: 0; transition: opacity 0.15s; }
 tr:hover .row-actions { opacity: 1; }
 
 .icon-btn {
   width: 26px; height: 26px;
-  border-radius: 5px;
-  border: none;
+  border-radius: 5px; border: none;
   background: var(--surface3);
   color: var(--text3);
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: flex; align-items: center; justify-content: center;
   font-size: 11px;
   transition: all 0.15s;
 }
 
-.icon-btn:hover { background: var(--border2); color: var(--text); }
-.icon-btn.del:hover { background: var(--red-dim); color: var(--red); }
+.icon-btn:hover      { background: var(--border2); color: var(--text); }
+.icon-btn.del:hover  { background: var(--red-dim); color: var(--red); }
 .icon-btn.edit:hover { background: var(--blue-dim); color: var(--blue); }
 
-/* ─── PROGRESS BARS ─── */
+/* ─── PROGRESS ─── */
 .prog-wrap {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -558,50 +484,18 @@ tr:hover .row-actions { opacity: 1; }
   padding: 20px 22px;
 }
 
-.prog-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 14px;
-}
-
+.prog-row { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
 .prog-row:last-child { margin-bottom: 0; }
 
-.prog-label {
-  font-size: 12px;
-  color: var(--text2);
-  width: 150px;
-  flex-shrink: 0;
-}
+.prog-label { font-size: 12px; color: var(--text2); width: 150px; flex-shrink: 0; }
 
-.prog-bar {
-  flex: 1;
-  height: 5px;
-  background: var(--border2);
-  border-radius: 3px;
-  overflow: hidden;
-}
+.prog-bar { flex: 1; height: 5px; background: var(--border2); border-radius: 3px; overflow: hidden; }
+.prog-fill { height: 100%; border-radius: 3px; transition: width 0.6s ease; }
 
-.prog-fill {
-  height: 100%;
-  border-radius: 3px;
-  transition: width 0.6s ease;
-}
+.prog-pct { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--text3); width: 36px; text-align: right; }
 
-.prog-pct {
-  font-family: 'Space Mono', monospace;
-  font-size: 10px;
-  color: var(--text3);
-  width: 36px;
-  text-align: right;
-}
-
-/* ─── SPRINT CHECKLISTS ─── */
-.sprint-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
+/* ─── SPRINT ─── */
+.sprint-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 
 .sprint-card {
   background: var(--surface);
@@ -613,87 +507,48 @@ tr:hover .row-actions { opacity: 1; }
 .sprint-head {
   padding: 11px 16px;
   border-bottom: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: flex; align-items: center; justify-content: space-between;
   background: var(--surface2);
 }
 
 .sprint-head-title {
-  font-size: 12.5px;
-  font-weight: 600;
-  color: var(--text);
-  display: flex;
-  align-items: center;
-  gap: 7px;
+  font-size: 12.5px; font-weight: 600; color: var(--text);
+  display: flex; align-items: center; gap: 7px;
 }
 
-.sprint-day-num {
-  font-family: 'Space Mono', monospace;
-  font-size: 10px;
-  background: var(--accent-dim);
-  color: var(--accent);
-  padding: 2px 7px;
-  border-radius: 4px;
-}
-
-.sprint-body {
-  padding: 12px 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-}
+.sprint-body { padding: 12px 16px; display: flex; flex-direction: column; gap: 7px; }
 
 .check-row {
-  display: flex;
-  align-items: flex-start;
-  gap: 9px;
-  font-size: 12.5px;
-  color: var(--text2);
-  cursor: pointer;
-  user-select: none;
-  line-height: 1.4;
-  padding: 2px 0;
+  display: flex; align-items: flex-start; gap: 9px;
+  font-size: 12.5px; color: var(--text2);
+  cursor: pointer; user-select: none;
+  line-height: 1.4; padding: 2px 0;
 }
 
 .check-row.done { color: var(--text3); }
 .check-row.done .check-text { text-decoration: line-through; }
 
 .checkbox {
-  width: 15px;
-  height: 15px;
+  width: 15px; height: 15px;
   border: 1.5px solid var(--border2);
-  border-radius: 4px;
-  flex-shrink: 0;
+  border-radius: 4px; flex-shrink: 0;
   margin-top: 1px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.15s;
-  background: transparent;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.15s; background: transparent;
 }
 
-.check-row.done .checkbox {
-  background: var(--accent);
-  border-color: var(--accent);
-}
+.check-row.done .checkbox { background: var(--accent); border-color: var(--accent); }
 
 .check-row.done .checkbox::after {
   content: '';
-  width: 8px;
-  height: 5px;
+  width: 8px; height: 5px;
   border-left: 1.5px solid var(--bg);
   border-bottom: 1.5px solid var(--bg);
   transform: rotate(-45deg) translateY(-1px);
 }
 
 /* ─── ORG CARDS ─── */
-.org-cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin-bottom: 28px;
-}
+.org-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 28px; }
 
 .org-card {
   background: var(--surface);
@@ -702,82 +557,44 @@ tr:hover .row-actions { opacity: 1; }
   padding: 20px;
   cursor: pointer;
   transition: all 0.2s;
-  position: relative;
-  overflow: hidden;
+  position: relative; overflow: hidden;
 }
 
-.org-card:hover { transform: translateY(-2px); }
-.org-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 2px;
-}
+.org-card:hover { transform: translateY(-2px); border-color: var(--border2); }
 
-.org-ml4sci::before { background: var(--ml4sci); }
+.org-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; }
+.org-ml4sci::before  { background: var(--ml4sci); }
 .org-kubeflow::before { background: var(--kubeflow); }
-.org-airflow::before { background: var(--airflow); }
+.org-airflow::before  { background: var(--airflow); }
 
-.org-card-name {
-  font-family: 'Syne', sans-serif;
-  font-size: 16px;
-  font-weight: 700;
-  margin-bottom: 4px;
-}
-
-.org-ml4sci .org-card-name { color: var(--ml4sci); }
+.org-card-name { font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+.org-ml4sci  .org-card-name { color: var(--ml4sci); }
 .org-kubeflow .org-card-name { color: var(--kubeflow); }
-.org-airflow .org-card-name { color: var(--airflow); }
+.org-airflow  .org-card-name { color: var(--airflow); }
 
 .org-card-project { font-size: 12px; color: var(--text3); margin-bottom: 14px; }
 
-.org-card-stats {
-  display: flex;
-  gap: 16px;
-}
-
+.org-card-stats { display: flex; gap: 16px; }
 .org-stat-item { font-size: 11px; color: var(--text3); }
-.org-stat-item strong { font-size: 20px; font-family: 'Syne', sans-serif; color: var(--text); display: block; line-height: 1.1; }
+.org-stat-item strong { font-size: 20px; font-family: 'DM Sans', sans-serif; font-weight: 700; color: var(--text); display: block; line-height: 1.1; }
 
 /* ─── TIMELINE ─── */
-.timeline {
-  padding-left: 20px;
-  position: relative;
-}
+.timeline { padding-left: 20px; position: relative; }
 
 .timeline::before {
   content: '';
   position: absolute;
   left: 6px; top: 8px; bottom: 8px;
-  width: 1px;
-  background: var(--border2);
+  width: 1px; background: var(--border2);
 }
 
-.tl-item {
-  position: relative;
-  padding-left: 20px;
-  padding-bottom: 20px;
-}
-
+.tl-item { position: relative; padding-left: 20px; padding-bottom: 20px; }
 .tl-item:last-child { padding-bottom: 0; }
 
-.tl-dot {
-  position: absolute;
-  left: -14px; top: 4px;
-  width: 10px; height: 10px;
-  border-radius: 50%;
-  border: 2px solid var(--surface);
-}
-
-.tl-date {
-  font-family: 'Space Mono', monospace;
-  font-size: 10px;
-  color: var(--text3);
-  margin-bottom: 2px;
-}
-
+.tl-dot { position: absolute; left: -14px; top: 4px; width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--surface); }
+.tl-date  { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--text3); margin-bottom: 2px; }
 .tl-title { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
-.tl-desc { font-size: 11.5px; color: var(--text3); }
+.tl-desc  { font-size: 11.5px; color: var(--text3); }
 
 /* ─── MODAL ─── */
 .modal-overlay {
@@ -785,9 +602,7 @@ tr:hover .row-actions { opacity: 1; }
   background: rgba(0,0,0,0.7);
   backdrop-filter: blur(4px);
   z-index: 5000;
-  display: none;
-  align-items: center;
-  justify-content: center;
+  display: none; align-items: center; justify-content: center;
 }
 
 .modal-overlay.open { display: flex; }
@@ -796,34 +611,24 @@ tr:hover .row-actions { opacity: 1; }
   background: var(--surface);
   border: 1px solid var(--border2);
   border-radius: 14px;
-  padding: 32px;
-  width: 500px;
-  max-width: 95vw;
-  max-height: 90vh;
-  overflow-y: auto;
-  position: relative;
+  padding: 32px; width: 500px;
+  max-width: 95vw; max-height: 90vh;
+  overflow-y: auto; position: relative;
 }
 
 .modal-title {
-  font-family: 'Syne', sans-serif;
-  font-size: 18px;
-  font-weight: 700;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 17px; font-weight: 700;
   color: var(--text);
   margin-bottom: 24px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  display: flex; align-items: center; gap: 8px;
 }
 
 .modal-close {
-  position: absolute;
-  top: 16px; right: 16px;
-  background: none;
-  border: none;
-  color: var(--text3);
-  cursor: pointer;
-  font-size: 16px;
-  padding: 4px;
+  position: absolute; top: 16px; right: 16px;
+  background: none; border: none;
+  color: var(--text3); cursor: pointer;
+  font-size: 16px; padding: 4px;
   transition: color 0.15s;
 }
 
@@ -833,12 +638,9 @@ tr:hover .row-actions { opacity: 1; }
 
 .field-label {
   display: block;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text3);
-  margin-bottom: 6px;
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--text3); margin-bottom: 6px;
 }
 
 .field-input, .field-select, .field-textarea {
@@ -847,51 +649,34 @@ tr:hover .row-actions { opacity: 1; }
   border: 1px solid var(--border2);
   border-radius: 7px;
   padding: 10px 13px;
-  font-size: 13px;
-  color: var(--text);
-  font-family: 'Outfit', sans-serif;
+  font-size: 13px; color: var(--text);
+  font-family: 'DM Sans', sans-serif;
   outline: none;
   transition: border-color 0.2s;
 }
 
-.field-input:focus, .field-select:focus, .field-textarea:focus {
-  border-color: var(--accent);
-}
-
+.field-input:focus, .field-select:focus, .field-textarea:focus { border-color: var(--accent); }
 .field-select option { background: var(--surface2); }
 .field-textarea { resize: vertical; min-height: 80px; }
 
-.modal-actions {
-  display: flex;
-  gap: 10px;
-  justify-content: flex-end;
-  margin-top: 24px;
-}
+.modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 24px; }
 
 .btn-save {
-  background: var(--accent);
-  color: var(--bg);
-  border: none;
-  border-radius: 7px;
+  background: var(--accent); color: var(--bg);
+  border: none; border-radius: 7px;
   padding: 9px 22px;
-  font-family: 'Syne', sans-serif;
-  font-size: 13px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: opacity 0.2s;
+  font-family: 'Fraunces', serif;
+  font-size: 13px; font-weight: 700;
+  cursor: pointer; transition: opacity 0.2s;
 }
 
 .btn-save:hover { opacity: 0.88; }
 
 .btn-cancel {
-  background: var(--surface3);
-  color: var(--text2);
-  border: none;
-  border-radius: 7px;
-  padding: 9px 22px;
-  font-size: 13px;
-  cursor: pointer;
-  font-family: 'Outfit', sans-serif;
+  background: var(--surface3); color: var(--text2);
+  border: none; border-radius: 7px;
+  padding: 9px 22px; font-size: 13px;
+  cursor: pointer; font-family: 'DM Sans', sans-serif;
   transition: all 0.15s;
 }
 
@@ -899,63 +684,47 @@ tr:hover .row-actions { opacity: 1; }
 
 /* ─── TOAST ─── */
 .toast {
-  position: fixed;
-  bottom: 24px; right: 24px;
+  position: fixed; bottom: 24px; right: 24px;
   background: var(--surface);
   border: 1px solid var(--accent);
-  border-radius: 8px;
-  padding: 12px 18px;
-  font-size: 13px;
-  color: var(--text);
+  border-radius: 8px; padding: 12px 18px;
+  font-size: 13px; color: var(--text);
   z-index: 9999;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  transform: translateY(100px);
-  opacity: 0;
+  display: flex; align-items: center; gap: 8px;
+  transform: translateY(100px); opacity: 0;
   transition: all 0.3s;
 }
 
-.toast.show {
-  transform: translateY(0);
-  opacity: 1;
-}
-
+.toast.show { transform: translateY(0); opacity: 1; }
 .toast i { color: var(--accent); }
 
-/* ─── TWO COL ─── */
-.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+/* ─── LAYOUTS ─── */
+.two-col   { display: grid; grid-template-columns: 1fr 1fr;     gap: 20px; }
 .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
 
-/* ─── MENTOR CARD ─── */
+/* ─── MENTOR ─── */
 .mentor-card {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--r);
   padding: 16px 18px;
-  display: flex;
-  gap: 14px;
+  display: flex; gap: 14px;
   transition: border-color 0.2s;
 }
 
 .mentor-card:hover { border-color: var(--border2); }
 
 .mentor-avatar {
-  width: 36px; height: 36px;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 15px;
-  font-weight: 700;
-  flex-shrink: 0;
+  width: 36px; height: 36px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px; font-weight: 700; flex-shrink: 0;
 }
 
 .mentor-body { flex: 1; }
 .mentor-name { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
-.mentor-msg { font-size: 12px; color: var(--text3); line-height: 1.5; margin-bottom: 8px; }
+.mentor-msg  { font-size: 12px; color: var(--text3); line-height: 1.5; margin-bottom: 8px; }
 .mentor-meta { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
-.mentor-actions { display: flex; gap: 6px; opacity: 0; transition: opacity 0.15s; }
+.mentor-actions { display: flex; gap: 6px; opacity: 0; transition: opacity 0.15s; margin-left: auto; }
 .mentor-card:hover .mentor-actions { opacity: 1; }
 
 /* ─── INFO BOX ─── */
@@ -965,140 +734,31 @@ tr:hover .row-actions { opacity: 1; }
   border-left: 3px solid var(--accent);
   border-radius: 0 var(--r2) var(--r2) 0;
   padding: 14px 16px;
-  font-size: 12.5px;
-  color: var(--text2);
-  line-height: 1.6;
-  margin-bottom: 16px;
+  font-size: 12.5px; color: var(--text2);
+  line-height: 1.6; margin-bottom: 16px;
 }
 
 .info-box strong { color: var(--text); }
 .info-box.warning { border-left-color: var(--amber); }
-.info-box.danger { border-left-color: var(--red); }
 
 /* ─── EMPTY STATE ─── */
-.empty-state {
-  text-align: center;
-  padding: 40px 20px;
-  color: var(--text3);
-}
-
+.empty-state { text-align: center; padding: 40px 20px; color: var(--text3); }
 .empty-state i { font-size: 28px; margin-bottom: 10px; display: block; }
 .empty-state p { font-size: 13px; }
 
-/* ─── ANIMATIONS ─── */
-@keyframes fadeUp {
-  from { opacity:0; transform:translateY(10px); }
-  to { opacity:1; transform:translateY(0); }
-}
+/* ─── NOTE CARD ─── */
+.note-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); padding: 16px; }
+.note-label { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text3); margin-bottom: 8px; }
 
-.page.active > * {
-  animation: fadeUp 0.35s ease both;
-}
-
-/* ─── SPRINT NOTE CARD ─── */
-.note-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--r);
-  padding: 16px;
-}
-
-.note-label {
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text3);
-  margin-bottom: 8px;
-}
-
-.pipeline-step {
-  font-family: 'Space Mono', monospace;
-  font-size: 11px;
-  color: var(--text2);
-  padding: 3px 0;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.pipeline-step::before {
-  content: '';
-  width: 5px; height: 5px;
-  border-radius: 50%;
-  background: var(--accent);
-  flex-shrink: 0;
-}
-
-/* ─── SETTINGS PAGE ─── */
-.settings-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--r);
-  padding: 24px;
-  margin-bottom: 16px;
-}
-
-.settings-title {
-  font-family: 'Syne', sans-serif;
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: 16px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-/* ─── DEPLOY GUIDE ─── */
-.deploy-step {
-  display: flex;
-  gap: 16px;
-  padding: 16px 0;
-  border-bottom: 1px solid var(--border);
-}
-
-.deploy-step:last-child { border-bottom: none; }
-
-.deploy-num {
-  width: 28px; height: 28px;
-  border-radius: 50%;
-  background: var(--accent-dim);
-  border: 1px solid var(--accent);
-  color: var(--accent);
-  font-family: 'Space Mono', monospace;
-  font-size: 12px;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-
-.deploy-content { flex: 1; }
-.deploy-title { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
-.deploy-desc { font-size: 12px; color: var(--text3); line-height: 1.6; }
-.deploy-cmd {
-  font-family: 'Space Mono', monospace;
-  font-size: 11px;
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 5px;
-  padding: 8px 12px;
-  color: var(--accent);
-  margin-top: 8px;
-  display: block;
-}
-
-/* Responsive */
-@media(max-width:900px) {
-  .stats-grid { grid-template-columns: 1fr 1fr; }
-  .org-cards { grid-template-columns: 1fr; }
+/* ─── RESPONSIVE ─── */
+@media (max-width: 900px) {
+  .stats-grid   { grid-template-columns: 1fr 1fr; }
+  .org-cards    { grid-template-columns: 1fr; }
   .two-col, .sprint-grid { grid-template-columns: 1fr; }
-  .topbar-nav { display: none; }
+  .topbar-nav   { display: none; }
 }
-</style>
+
+  </style>
 </head>
 <body>
 
@@ -1110,7 +770,7 @@ tr:hover .row-actions { opacity: 1; }
       <span><i class="fas fa-rocket"></i></span>
       GSoC 2026 Tracker
     </div>
-    <div class="login-title">Welcome back,<br>KRYSTALM7 👋</div>
+    <div class="login-title">Welcome back,<br>CR1TIC4L 👋</div>
     <div class="login-sub">Enter your credentials to access the sprint dashboard.</div>
     <div class="login-field">
       <label>Username</label>
@@ -1118,9 +778,11 @@ tr:hover .row-actions { opacity: 1; }
     </div>
     <div class="login-field">
       <label>Password</label>
-      <input type="password" id="loginPass" placeholder="password" onkeydown="if(event.key==='Enter')doLogin()">
+      <input type="password" id="loginPass" placeholder="password">
     </div>
-    <button class="login-btn" onclick="doLogin()"><i class="fas fa-sign-in-alt"></i> &nbsp;Access Dashboard</button>
+    <button class="login-btn" onclick="doLogin()">
+      <i class="fas fa-sign-in-alt"></i> &nbsp;Access Dashboard
+    </button>
     <div class="login-error" id="loginError"></div>
   </div>
 </div>
@@ -1134,40 +796,43 @@ tr:hover .row-actions { opacity: 1; }
       <i class="fas fa-rocket"></i> GSoC 2026
     </div>
     <div class="topbar-nav">
-      <button class="nav-btn active" onclick="showPage('dashboard')" id="nav-dashboard"><i class="fas fa-chart-line"></i> Dashboard</button>
-      <button class="nav-btn org-ml4sci" onclick="showPage('ml4sci')" id="nav-ml4sci"><i class="fas fa-flask"></i> ML4SCI</button>
+      <button class="nav-btn active"       onclick="showPage('dashboard')" id="nav-dashboard"><i class="fas fa-chart-line"></i> Dashboard</button>
+      <button class="nav-btn org-ml4sci"   onclick="showPage('ml4sci')"   id="nav-ml4sci"  ><i class="fas fa-flask"></i> ML4SCI</button>
       <button class="nav-btn org-kubeflow" onclick="showPage('kubeflow')" id="nav-kubeflow"><i class="fas fa-cloud"></i> Kubeflow</button>
-      <button class="nav-btn org-airflow" onclick="showPage('airflow')" id="nav-airflow"><i class="fas fa-wind"></i> Airflow</button>
-      <button class="nav-btn" onclick="showPage('sprint')" id="nav-sprint"><i class="fas fa-calendar-check"></i> Sprint</button>
-      <button class="nav-btn" onclick="showPage('mentors')" id="nav-mentors"><i class="fas fa-user-tie"></i> Mentors</button>
-      <button class="nav-btn" onclick="showPage('deploy')" id="nav-deploy"><i class="fas fa-server"></i> Deploy</button>
+      <button class="nav-btn org-airflow"  onclick="showPage('airflow')"  id="nav-airflow" ><i class="fas fa-wind"></i> Airflow</button>
+      <button class="nav-btn"              onclick="showPage('sprint')"   id="nav-sprint"  ><i class="fas fa-calendar-check"></i> Sprint</button>
+      <button class="nav-btn"              onclick="showPage('mentors')"  id="nav-mentors" ><i class="fas fa-user-tie"></i> Mentors</button>
     </div>
     <div class="topbar-right">
-      <div class="topbar-deadline"><div class="pulse-dot"></div><span id="deadlineCountdown">21d left</span></div>
+      <div class="topbar-deadline">
+        <div class="pulse-dot"></div>
+        <span id="deadlineCountdown">21d left</span>
+      </div>
       <button class="logout-btn" onclick="doLogout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
     </div>
   </div>
 
-  <!-- ════════════ DASHBOARD PAGE ════════════ -->
+  <!-- ════════ DASHBOARD ════════ -->
   <div class="page active" id="page-dashboard">
-
     <div class="page-hero">
       <div>
         <div class="page-title">GSoC 2026 <span class="accent">Sprint</span></div>
-        <div class="page-sub">March 11 → March 31 &nbsp;·&nbsp; ML4SCI · Kubeflow · Apache Airflow &nbsp;·&nbsp; <a href="https://github.com/KRYSTALM7" target="_blank" style="color:var(--accent);text-decoration:none;"><i class="fab fa-github"></i> KRYSTALM7</a></div>
+        <div class="page-sub">
+          March 11 → March 31 &nbsp;·&nbsp; ML4SCI · Kubeflow · Apache Airflow &nbsp;·&nbsp;
+          <a href="https://github.com/KRYSTALM7" target="_blank" style="color:var(--accent);text-decoration:none;">
+            <i class="fab fa-github"></i> KRYSTALM7
+          </a>
+        </div>
       </div>
     </div>
 
-    <!-- STATS -->
     <div class="stats-grid" id="dashStats"></div>
 
-    <!-- ORG CARDS -->
     <div class="section-head">
       <div class="section-title"><i class="fas fa-building"></i> Organizations</div>
     </div>
     <div class="org-cards" id="orgCards"></div>
 
-    <!-- OVERALL PROGRESS + TIMELINE -->
     <div class="two-col">
       <div>
         <div class="section-head">
@@ -1185,7 +850,6 @@ tr:hover .row-actions { opacity: 1; }
       </div>
     </div>
 
-    <!-- ALL PRs -->
     <div class="section-head" style="margin-top:28px;">
       <div class="section-title"><i class="fas fa-code-branch"></i> All Pull Requests</div>
       <button class="add-btn" onclick="openPRModal(null,'all')"><i class="fas fa-plus"></i> Add PR</button>
@@ -1193,68 +857,65 @@ tr:hover .row-actions { opacity: 1; }
     <div class="table-wrap">
       <table>
         <thead><tr>
-          <th>Date</th><th>Org</th><th>Repository</th><th>Type</th><th>Description</th><th>PR Link</th><th>Status</th><th></th>
+          <th>Date</th><th>Org</th><th>Repository</th><th>Type</th><th>Description</th><th>Links</th><th>Status</th><th></th>
         </tr></thead>
         <tbody id="allPRsBody"></tbody>
       </table>
     </div>
   </div>
 
-  <!-- ════════════ ML4SCI PAGE ════════════ -->
+  <!-- ════════ ML4SCI ════════ -->
   <div class="page" id="page-ml4sci">
     <div class="page-hero">
       <div>
         <div class="page-title" style="color:var(--ml4sci)">ML4SCI <span style="color:var(--text)">· ML4DQM</span></div>
         <div class="page-sub">
           Machine Learning for Science &nbsp;·&nbsp;
-          <a href="https://github.com/ML4SCI" target="_blank" class="link-cell"><i class="fab fa-github"></i> ML4SCI Org</a> &nbsp;·&nbsp;
+          <a href="https://github.com/ML4SCI" target="_blank" class="link-cell"><i class="fab fa-github"></i> ML4SCI Org</a>
+          &nbsp;·&nbsp;
           <a href="https://summerofcode.withgoogle.com/programs/2026/organizations/machine-learning-for-science-ml4sci" target="_blank" class="link-cell"><i class="fas fa-external-link-alt"></i> GSoC Page</a>
         </div>
       </div>
-      <div style="text-align:right">
-        <button class="add-btn" onclick="openPRModal(null,'ml4sci')"><i class="fas fa-plus"></i> Add PR</button>
-      </div>
+      <button class="add-btn" onclick="openPRModal(null,'ml4sci')"><i class="fas fa-plus"></i> Add PR</button>
     </div>
     <div id="ml4sciContent"></div>
   </div>
 
-  <!-- ════════════ KUBEFLOW PAGE ════════════ -->
+  <!-- ════════ KUBEFLOW ════════ -->
   <div class="page" id="page-kubeflow">
     <div class="page-hero">
       <div>
         <div class="page-title" style="color:var(--kubeflow)">Kubeflow <span style="color:var(--text)">· ML Pipelines</span></div>
         <div class="page-sub">
           Kubeflow &nbsp;·&nbsp;
-          <a href="https://github.com/kubeflow" target="_blank" class="link-cell"><i class="fab fa-github"></i> Kubeflow Org</a> &nbsp;·&nbsp;
+          <a href="https://github.com/kubeflow" target="_blank" class="link-cell"><i class="fab fa-github"></i> Kubeflow Org</a>
+          &nbsp;·&nbsp;
           <a href="https://www.kubeflow.org" target="_blank" class="link-cell"><i class="fas fa-external-link-alt"></i> Website</a>
         </div>
       </div>
-      <div>
-        <button class="add-btn add-btn-blue" onclick="openPRModal(null,'kubeflow')"><i class="fas fa-plus"></i> Add PR</button>
-      </div>
+      <button class="add-btn add-btn-blue" onclick="openPRModal(null,'kubeflow')"><i class="fas fa-plus"></i> Add PR</button>
     </div>
     <div id="kubeflowContent"></div>
   </div>
 
-  <!-- ════════════ AIRFLOW PAGE ════════════ -->
+  <!-- ════════ AIRFLOW ════════ -->
   <div class="page" id="page-airflow">
     <div class="page-hero">
       <div>
         <div class="page-title" style="color:var(--airflow)">Apache Airflow <span style="color:var(--text)">· ML Workflows</span></div>
         <div class="page-sub">
           Apache Software Foundation &nbsp;·&nbsp;
-          <a href="https://github.com/apache/airflow" target="_blank" class="link-cell"><i class="fab fa-github"></i> airflow repo</a> &nbsp;·&nbsp;
+          <a href="https://github.com/apache/airflow" target="_blank" class="link-cell"><i class="fab fa-github"></i> airflow repo</a>
+          &nbsp;·&nbsp;
           <a href="https://airflow.apache.org" target="_blank" class="link-cell"><i class="fas fa-external-link-alt"></i> Website</a>
         </div>
       </div>
-      <div>
-        <button class="add-btn add-btn-amber" onclick="openPRModal(null,'airflow')"><i class="fas fa-plus"></i> Add PR</button>
-      </div>
+      <button class="add-btn add-btn-amber" onclick="openPRModal(null,'airflow')"><i class="fas fa-plus"></i> Add PR</button>
     </div>
     <div id="airflowContent"></div>
   </div>
 
-  <!-- ════════════ SPRINT PAGE ════════════ -->
+  <!-- ════════ SPRINT ════════ -->
   <div class="page" id="page-sprint">
     <div class="page-hero">
       <div>
@@ -1262,11 +923,10 @@ tr:hover .row-actions { opacity: 1; }
         <div class="page-sub">Day 1 = March 11 &nbsp;·&nbsp; Goal: 5 PRs + 1 Proposal + Mentor contact</div>
       </div>
     </div>
-
     <div class="info-box warning">
-      <strong>Target:</strong> 2-3 PRs in ML4SCI &nbsp;·&nbsp; 1-2 PRs in Kubeflow &nbsp;·&nbsp; 1 PR in Apache Airflow &nbsp;·&nbsp; Submit proposal by March 24 &nbsp;·&nbsp; <strong>Final deadline: March 31</strong>
+      <strong>Target:</strong> 2–3 PRs in ML4SCI &nbsp;·&nbsp; 1–2 PRs in Kubeflow &nbsp;·&nbsp; 1 PR in Apache Airflow &nbsp;·&nbsp;
+      Submit proposal by March 24 &nbsp;·&nbsp; <strong>Final deadline: March 31</strong>
     </div>
-
     <div class="section-head">
       <div class="section-title"><i class="fas fa-calendar-alt"></i> Daily Tasks</div>
       <button class="add-btn" onclick="openAddTaskModal()"><i class="fas fa-plus"></i> Add Task</button>
@@ -1274,7 +934,7 @@ tr:hover .row-actions { opacity: 1; }
     <div class="sprint-grid" id="sprintGrid"></div>
   </div>
 
-  <!-- ════════════ MENTORS PAGE ════════════ -->
+  <!-- ════════ MENTORS ════════ -->
   <div class="page" id="page-mentors">
     <div class="page-hero">
       <div>
@@ -1286,139 +946,47 @@ tr:hover .row-actions { opacity: 1; }
 
     <div id="mentorsList" style="display:flex;flex-direction:column;gap:12px;"></div>
 
-    <!-- Templates -->
     <div class="section-head" style="margin-top:28px;">
       <div class="section-title"><i class="fas fa-copy"></i> Message Templates</div>
     </div>
     <div class="two-col">
       <div class="note-card">
         <div class="note-label">🗣️ Introduction Message</div>
-        <div style="font-family:'Space Mono',monospace;font-size:11px;line-height:1.9;color:var(--text2);">
+        <div style="font-family:'DM Mono',monospace;font-size:11px;line-height:1.9;color:var(--text2);">
           Hello, I'm interested in contributing to the [Project] project.<br>
           I have experience with ML pipelines, LSTM, and gradient boosting.<br><br>
           I'd like to start by improving data preprocessing / evaluation pipelines.<br>
           Could you point me to open issues that would be a good starting point?
         </div>
-        <button onclick="copyTemplate('intro')" style="margin-top:10px;background:var(--accent-dim);border:none;border-radius:5px;padding:5px 12px;color:var(--accent);font-size:11px;cursor:pointer;"><i class="fas fa-copy"></i> Copy</button>
+        <button onclick="copyTemplate('intro')" style="margin-top:10px;background:var(--accent-dim);border:none;border-radius:5px;padding:5px 12px;color:var(--accent);font-size:11px;cursor:pointer;">
+          <i class="fas fa-copy"></i> Copy
+        </button>
       </div>
       <div class="note-card">
         <div class="note-label">📋 Proposal Review Request</div>
-        <div style="font-family:'Space Mono',monospace;font-size:11px;line-height:1.9;color:var(--text2);">
+        <div style="font-family:'DM Mono',monospace;font-size:11px;line-height:1.9;color:var(--text2);">
           I've prepared a draft proposal for [Project].<br>
           I've also made a few contributions to the repository.<br><br>
           Would you be open to reviewing it and suggesting improvements?<br>
           I'd really value your feedback on the technical design.
         </div>
-        <button onclick="copyTemplate('proposal')" style="margin-top:10px;background:var(--accent-dim);border:none;border-radius:5px;padding:5px 12px;color:var(--accent);font-size:11px;cursor:pointer;"><i class="fas fa-copy"></i> Copy</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ════════════ DEPLOY PAGE ════════════ -->
-  <div class="page" id="page-deploy">
-    <div class="page-hero">
-      <div>
-        <div class="page-title">Deploy <span class="accent-blue">Guide</span></div>
-        <div class="page-sub">Get this app live in under 10 minutes — step by step</div>
+        <button onclick="copyTemplate('proposal')" style="margin-top:10px;background:var(--accent-dim);border:none;border-radius:5px;padding:5px 12px;color:var(--accent);font-size:11px;cursor:pointer;">
+          <i class="fas fa-copy"></i> Copy
+        </button>
       </div>
     </div>
 
-    <div class="info-box">
-      <strong>What you need:</strong> A GitHub account (you have <a href="https://github.com/KRYSTALM7" target="_blank" style="color:var(--accent)">KRYSTALM7</a>) and this HTML file. That's it. No backend, no server, no cost.
+    <!-- Data Management -->
+    <div class="section-head" style="margin-top:28px;">
+      <div class="section-title"><i class="fas fa-database"></i> Data Management</div>
     </div>
-
-    <div class="two-col">
-      <div>
-        <div class="settings-card">
-          <div class="settings-title"><i class="fab fa-github" style="color:var(--text2)"></i> Option A — GitHub Pages (Free)</div>
-          <div class="deploy-step">
-            <div class="deploy-num">1</div>
-            <div class="deploy-content">
-              <div class="deploy-title">Create a new repository</div>
-              <div class="deploy-desc">Go to <a href="https://github.com/new" target="_blank" style="color:var(--accent)">github.com/new</a> &nbsp;·&nbsp; Name it: <code style="color:var(--accent);font-family:'Space Mono',monospace">gsoc-tracker</code> &nbsp;·&nbsp; Set to Public &nbsp;·&nbsp; Click "Create repository"</div>
-            </div>
-          </div>
-          <div class="deploy-step">
-            <div class="deploy-num">2</div>
-            <div class="deploy-content">
-              <div class="deploy-title">Upload this file</div>
-              <div class="deploy-desc">In the repo, click "Add file" → "Upload files" → drag and drop <code style="color:var(--accent);font-family:'Space Mono',monospace">index.html</code> → Commit changes</div>
-            </div>
-          </div>
-          <div class="deploy-step">
-            <div class="deploy-num">3</div>
-            <div class="deploy-content">
-              <div class="deploy-title">Enable GitHub Pages</div>
-              <div class="deploy-desc">Go to repo Settings → Pages → Source: "Deploy from branch" → Branch: main → folder: / (root) → Save</div>
-            </div>
-          </div>
-          <div class="deploy-step">
-            <div class="deploy-num">4</div>
-            <div class="deploy-content">
-              <div class="deploy-title">Your live URL</div>
-              <div class="deploy-desc">After 1-2 minutes your site will be live at:</div>
-              <code class="deploy-cmd">https://KRYSTALM7.github.io/gsoc-tracker</code>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <div class="settings-card">
-          <div class="settings-title"><i class="fas fa-bolt" style="color:var(--amber)"></i> Option B — Netlify (Faster, Drag & Drop)</div>
-          <div class="deploy-step">
-            <div class="deploy-num">1</div>
-            <div class="deploy-content">
-              <div class="deploy-title">Sign up / Log in</div>
-              <div class="deploy-desc">Go to <a href="https://netlify.com" target="_blank" style="color:var(--accent)">netlify.com</a> and sign up with your GitHub account KRYSTALM7</div>
-            </div>
-          </div>
-          <div class="deploy-step">
-            <div class="deploy-num">2</div>
-            <div class="deploy-content">
-              <div class="deploy-title">Deploy by drag & drop</div>
-              <div class="deploy-desc">On your Netlify dashboard, drag the <code style="color:var(--amber);font-family:'Space Mono',monospace">index.html</code> file directly into the deploy zone. It goes live instantly.</div>
-            </div>
-          </div>
-          <div class="deploy-step">
-            <div class="deploy-num">3</div>
-            <div class="deploy-content">
-              <div class="deploy-title">Get your URL</div>
-              <div class="deploy-desc">Netlify gives you a random URL like <code style="color:var(--amber);font-family:'Space Mono',monospace">random-name.netlify.app</code> — you can rename it in Site Settings → Domain Management</div>
-            </div>
-          </div>
-          <div class="deploy-step">
-            <div class="deploy-num">4</div>
-            <div class="deploy-content">
-              <div class="deploy-title">Update anytime</div>
-              <div class="deploy-desc">Just drag and drop the updated file again. Or connect to your GitHub repo for automatic deploys on every push.</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="settings-card">
-          <div class="settings-title"><i class="fas fa-shield-alt" style="color:var(--accent)"></i> About the Login System</div>
-          <div style="font-size:12.5px;color:var(--text2);line-height:1.7;">
-            Your credentials and all data are stored in <strong style="color:var(--text)">your browser's localStorage</strong>. This means:<br><br>
-            • Data persists across sessions on the same browser<br>
-            • No server, no database — completely private<br>
-            • To sync across devices, use the Export / Import feature<br>
-            • Password is hashed before storing (SHA-256)
-          </div>
-        </div>
-      </div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;">
+      <button class="add-btn" onclick="exportData()"><i class="fas fa-download"></i> Export Data (JSON)</button>
+      <button class="add-btn add-btn-blue" onclick="document.getElementById('importFile').click()"><i class="fas fa-upload"></i> Import Data (JSON)</button>
+      <button class="add-btn add-btn-pink" onclick="resetAllData()"><i class="fas fa-trash"></i> Reset All Data</button>
+      <input type="file" id="importFile" accept=".json" onchange="importData(event)" style="display:none">
     </div>
-
-    <div class="settings-card" style="margin-top:4px;">
-      <div class="settings-title"><i class="fas fa-download" style="color:var(--green)"></i> Data Management</div>
-      <div style="display:flex;gap:12px;flex-wrap:wrap;">
-        <button class="add-btn" onclick="exportData()"><i class="fas fa-download"></i> Export All Data (JSON)</button>
-        <button class="add-btn add-btn-blue" onclick="document.getElementById('importFile').click()"><i class="fas fa-upload"></i> Import Data (JSON)</button>
-        <button class="add-btn add-btn-pink" onclick="resetAllData()"><i class="fas fa-trash"></i> Reset All Data</button>
-        <input type="file" id="importFile" accept=".json" onchange="importData(event)" style="display:none">
-      </div>
-      <div style="font-size:11px;color:var(--text3);margin-top:10px;">Export your data before switching browsers or devices. Import restores everything exactly as it was.</div>
-    </div>
+    <div style="font-size:11px;color:var(--text3);margin-top:10px;">Export before switching browsers or devices. Import restores everything exactly as it was.</div>
   </div>
 
 </div><!-- /app -->
@@ -1552,11 +1120,15 @@ tr:hover .row-actions { opacity: 1; }
     <div class="field-group">
       <label class="field-label">Day</label>
       <select class="field-select" id="taskDay">
-        <option value="1-2">Day 1-2</option><option value="3-4">Day 3-4</option>
-        <option value="5-6">Day 5-6</option><option value="7">Day 7</option>
-        <option value="8">Day 8</option><option value="9-10">Day 9-10</option>
-        <option value="11">Day 11</option><option value="12">Day 12</option>
-        <option value="13-14">Day 13-14</option>
+        <option value="1-2">Day 1–2</option>
+        <option value="3-4">Day 3–4</option>
+        <option value="5-6">Day 5–6</option>
+        <option value="7">Day 7</option>
+        <option value="8">Day 8</option>
+        <option value="9-10">Day 9–10</option>
+        <option value="11">Day 11</option>
+        <option value="12">Day 12</option>
+        <option value="13-14">Day 13–14</option>
       </select>
     </div>
     <div class="field-group">
@@ -1570,24 +1142,25 @@ tr:hover .row-actions { opacity: 1; }
   </div>
 </div>
 
-<!-- TOAST -->
-<div class="toast" id="toast"><i class="fas fa-check-circle"></i> <span id="toastMsg">Saved!</span></div>
+<!-- Toast -->
+<div class="toast" id="toast">
+  <i class="fas fa-check-circle"></i>
+  <span id="toastMsg">Saved!</span>
+</div>
 
-<!-- ════════════════════════════════════════════ SCRIPT ════════════════════════════════════════════ -->
 <script>
 // ─── UTILITIES ───────────────────────────────────────────────────────────────
 
 async function hashPassword(pw) {
   const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(pw));
-  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
 }
 
-function ls(k) { try { return JSON.parse(localStorage.getItem(k)); } catch(e) { return null; } }
+function ls(k)       { try { return JSON.parse(localStorage.getItem(k)); } catch(e) { return null; } }
 function lsSet(k, v) { localStorage.setItem(k, JSON.stringify(v)); }
+function uid()       { return Date.now().toString(36) + Math.random().toString(36).slice(2,6); }
 
-function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2,6); }
-
-function toast(msg, type='success') {
+function toast(msg, type = 'success') {
   const t = document.getElementById('toast');
   document.getElementById('toastMsg').textContent = msg;
   t.querySelector('i').className = type === 'success' ? 'fas fa-check-circle' : 'fas fa-info-circle';
@@ -1598,41 +1171,37 @@ function toast(msg, type='success') {
 
 function fmtDate(d) {
   if (!d) return '—';
-  const dt = new Date(d);
-  return dt.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+  return new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
 }
 
 // ─── AUTH ────────────────────────────────────────────────────────────────────
 
-// Credentials are stored as SHA-256 hashes — the real password never appears here
+// Credentials stored as SHA-256 hash — real password never appears in source
 const _U = 'CR1TIC4L';
 const _H = '5319750aa1cdb70c9fd7e23dd809399ad6a4d28ed69c1013d857a4b1ca6dd419';
 
 async function doLogin() {
-  const u = document.getElementById('loginUser').value.trim();
-  const p = document.getElementById('loginPass').value;
+  const u   = document.getElementById('loginUser').value.trim();
+  const p   = document.getElementById('loginPass').value;
   const err = document.getElementById('loginError');
   const hash = await hashPassword(p);
-  if (u !== _U || hash !== _H) {
-    err.textContent = 'Incorrect username or password.';
-    return;
-  }
+  if (u !== _U || hash !== _H) { err.textContent = 'Incorrect username or password.'; return; }
   lsSet('gsoc_session', { user: u, ts: Date.now() });
   document.getElementById('loginScreen').style.display = 'none';
-  document.getElementById('app').style.display = 'flex';
-  document.getElementById('app').style.flexDirection = 'column';
+  document.getElementById('app').style.display        = 'flex';
+  document.getElementById('app').style.flexDirection  = 'column';
   initApp();
 }
 
 function doLogout() {
   localStorage.removeItem('gsoc_session');
-  document.getElementById('app').style.display = 'none';
+  document.getElementById('app').style.display        = 'none';
   document.getElementById('loginScreen').style.display = 'flex';
   document.getElementById('loginPass').value = '';
   document.getElementById('loginUser').value = '';
 }
 
-// ─── PAGE NAVIGATION ─────────────────────────────────────────────────────────
+// ─── PAGE NAV ────────────────────────────────────────────────────────────────
 
 function showPage(id) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -1640,125 +1209,89 @@ function showPage(id) {
   document.getElementById('page-' + id).classList.add('active');
   document.getElementById('nav-' + id).classList.add('active');
   if (id === 'dashboard') renderDashboard();
-  if (id === 'ml4sci') renderOrgPage('ml4sci');
-  if (id === 'kubeflow') renderOrgPage('kubeflow');
-  if (id === 'airflow') renderOrgPage('airflow');
-  if (id === 'sprint') renderSprint();
-  if (id === 'mentors') renderMentors();
+  if (id === 'ml4sci')    renderOrgPage('ml4sci');
+  if (id === 'kubeflow')  renderOrgPage('kubeflow');
+  if (id === 'airflow')   renderOrgPage('airflow');
+  if (id === 'sprint')    renderSprint();
+  if (id === 'mentors')   renderMentors();
 }
 
-// ─── DATA STORE ──────────────────────────────────────────────────────────────
+// ─── DATA ────────────────────────────────────────────────────────────────────
 
-function getData() {
-  return ls('gsoc_data') || getDefaultData();
-}
-
-function saveData(data) {
-  lsSet('gsoc_data', data);
-}
+function getData()      { return ls('gsoc_data') || getDefaultData(); }
+function saveData(data) { lsSet('gsoc_data', data); }
 
 function getDefaultData() {
-  return {
-    prs: [],
-    mentors: [],
-    sprint: getDefaultSprint()
-  };
+  return { prs: [], mentors: [], sprint: getDefaultSprint() };
 }
 
 function getDefaultSprint() {
   return {
-    '1-2': {
-      title: 'Setup & GitHub',
-      tasks: [
-        { id: uid(), text: 'Update GitHub profile README with ML experience, tech stack, GSoC badge', done: false },
-        { id: uid(), text: 'Pin best ML and research repositories on GitHub', done: false },
-        { id: uid(), text: 'Add clear READMEs with architecture diagrams to pinned repos', done: false },
-        { id: uid(), text: 'Study ML4SCI project list on GSoC page', done: false },
-        { id: uid(), text: 'Study Kubeflow GSoC projects and select target', done: false },
-        { id: uid(), text: 'Study Apache Airflow GSoC projects and select target', done: false },
-        { id: uid(), text: 'Run ML4SCI/ML4DQM repository locally', done: false },
-      ]
-    },
-    '3-4': {
-      title: 'Community Joining',
-      tasks: [
-        { id: uid(), text: 'Join ML4SCI Slack channel and post intro message', done: false },
-        { id: uid(), text: 'Join Kubeflow Slack / GitHub discussions', done: false },
-        { id: uid(), text: 'Join Apache Airflow dev mailing list or Slack', done: false },
-        { id: uid(), text: 'Find good-first-issue labels in all 3 orgs', done: false },
-        { id: uid(), text: 'Submit PR #1 to ML4SCI (docs / README fix)', done: false },
-      ]
-    },
-    '5-6': {
-      title: 'First Contributions',
-      tasks: [
-        { id: uid(), text: 'Submit PR #2 to ML4SCI (bug fix with tests)', done: false },
-        { id: uid(), text: 'Submit PR #1 to Kubeflow (docs or small fix)', done: false },
-        { id: uid(), text: 'Read ML4DQM research paper and take notes', done: false },
-        { id: uid(), text: 'Deep study dataset pipeline and model architecture', done: false },
-      ]
-    },
-    '7': {
-      title: 'Feature PRs',
-      tasks: [
-        { id: uid(), text: 'Submit PR #3 to ML4SCI (feature: metric module or data loader)', done: false },
-        { id: uid(), text: 'Submit PR #1 to Apache Airflow (good first issue)', done: false },
-        { id: uid(), text: 'Update sprint progress tracker', done: false },
-      ]
-    },
-    '8': {
-      title: 'Mentor Contact',
-      tasks: [
-        { id: uid(), text: 'Send intro message to ML4SCI mentor via Slack', done: false },
-        { id: uid(), text: 'Send intro message to Kubeflow mentor', done: false },
-        { id: uid(), text: 'Log all mentor interactions in the Mentors tab', done: false },
-        { id: uid(), text: 'Submit PR #2 to Kubeflow (bug fix)', done: false },
-      ]
-    },
-    '9-10': {
-      title: 'Proposal Writing',
-      tasks: [
-        { id: uid(), text: 'Write proposal title, abstract, and problem statement', done: false },
-        { id: uid(), text: 'Draw architecture diagram on Excalidraw (excalidraw.com)', done: false },
-        { id: uid(), text: 'Complete 12-week timeline table', done: false },
-        { id: uid(), text: 'Write deliverables and "About Me" sections', done: false },
-      ]
-    },
-    '11': {
-      title: 'Additional PRs',
-      tasks: [
-        { id: uid(), text: 'Submit PR #4 (performance opt or refactor — any org)', done: false },
-        { id: uid(), text: 'Grammar and clarity pass on proposal draft', done: false },
-        { id: uid(), text: 'Verify architecture diagram is clear and complete', done: false },
-      ]
-    },
-    '12': {
-      title: 'Proposal Polish',
-      tasks: [
-        { id: uid(), text: 'Grammar, clarity, and technical depth review', done: false },
-        { id: uid(), text: 'Validate timeline is realistic', done: false },
-        { id: uid(), text: 'Confirm all links and diagrams work', done: false },
-      ]
-    },
-    '13-14': {
-      title: 'Final Submission',
-      tasks: [
-        { id: uid(), text: 'Send proposal draft to ML4SCI mentor for feedback', done: false },
-        { id: uid(), text: 'Incorporate mentor feedback into proposal', done: false },
-        { id: uid(), text: 'Submit PR #5 (final contribution)', done: false },
-        { id: uid(), text: 'Submit final proposal on summerofcode.withgoogle.com', done: false },
-        { id: uid(), text: 'Confirm submission confirmation email received', done: false },
-      ]
-    }
+    '1-2':  { tasks: [
+      { id: uid(), text: 'Update GitHub profile README with ML experience, tech stack, GSoC badge', done: false },
+      { id: uid(), text: 'Pin best ML and research repositories on GitHub', done: false },
+      { id: uid(), text: 'Add clear READMEs with architecture diagrams to pinned repos', done: false },
+      { id: uid(), text: 'Study ML4SCI project list on GSoC page', done: false },
+      { id: uid(), text: 'Study Kubeflow GSoC projects and select target', done: false },
+      { id: uid(), text: 'Study Apache Airflow GSoC projects and select target', done: false },
+      { id: uid(), text: 'Run ML4SCI/ML4DQM repository locally', done: false },
+    ]},
+    '3-4':  { tasks: [
+      { id: uid(), text: 'Join ML4SCI Slack channel and post intro message', done: false },
+      { id: uid(), text: 'Join Kubeflow Slack / GitHub discussions', done: false },
+      { id: uid(), text: 'Join Apache Airflow dev mailing list or Slack', done: false },
+      { id: uid(), text: 'Find good-first-issue labels in all 3 orgs', done: false },
+      { id: uid(), text: 'Submit PR #1 to ML4SCI (docs / README fix)', done: false },
+    ]},
+    '5-6':  { tasks: [
+      { id: uid(), text: 'Submit PR #2 to ML4SCI (bug fix with tests)', done: false },
+      { id: uid(), text: 'Submit PR #1 to Kubeflow (docs or small fix)', done: false },
+      { id: uid(), text: 'Read ML4DQM research paper and take notes', done: false },
+      { id: uid(), text: 'Deep study dataset pipeline and model architecture', done: false },
+    ]},
+    '7':    { tasks: [
+      { id: uid(), text: 'Submit PR #3 to ML4SCI (feature: metric module or data loader)', done: false },
+      { id: uid(), text: 'Submit PR #1 to Apache Airflow (good first issue)', done: false },
+      { id: uid(), text: 'Update sprint progress tracker', done: false },
+    ]},
+    '8':    { tasks: [
+      { id: uid(), text: 'Send intro message to ML4SCI mentor via Slack', done: false },
+      { id: uid(), text: 'Send intro message to Kubeflow mentor', done: false },
+      { id: uid(), text: 'Log all mentor interactions in the Mentors tab', done: false },
+      { id: uid(), text: 'Submit PR #2 to Kubeflow (bug fix)', done: false },
+    ]},
+    '9-10': { tasks: [
+      { id: uid(), text: 'Write proposal title, abstract, and problem statement', done: false },
+      { id: uid(), text: 'Draw architecture diagram on Excalidraw (excalidraw.com)', done: false },
+      { id: uid(), text: 'Complete 12-week timeline table', done: false },
+      { id: uid(), text: 'Write deliverables and About Me sections', done: false },
+    ]},
+    '11':   { tasks: [
+      { id: uid(), text: 'Submit PR #4 (performance opt or refactor — any org)', done: false },
+      { id: uid(), text: 'Grammar and clarity pass on proposal draft', done: false },
+      { id: uid(), text: 'Verify architecture diagram is clear and complete', done: false },
+    ]},
+    '12':   { tasks: [
+      { id: uid(), text: 'Grammar, clarity, and technical depth review', done: false },
+      { id: uid(), text: 'Validate timeline is realistic', done: false },
+      { id: uid(), text: 'Confirm all links and diagrams work', done: false },
+    ]},
+    '13-14':{ tasks: [
+      { id: uid(), text: 'Send proposal draft to ML4SCI mentor for feedback', done: false },
+      { id: uid(), text: 'Incorporate mentor feedback into proposal', done: false },
+      { id: uid(), text: 'Submit PR #5 (final contribution)', done: false },
+      { id: uid(), text: 'Submit final proposal on summerofcode.withgoogle.com', done: false },
+      { id: uid(), text: 'Confirm submission confirmation email received', done: false },
+    ]},
   };
 }
 
-// ─── BADGES & HELPERS ────────────────────────────────────────────────────────
+// ─── CONSTANTS ───────────────────────────────────────────────────────────────
 
 const ORG_META = {
-  ml4sci:   { name: 'ML4SCI',    color: 'ml4sci',   target: 3, gh: 'https://github.com/ML4SCI', icon: 'flask' },
-  kubeflow: { name: 'Kubeflow',  color: 'kubeflow', target: 2, gh: 'https://github.com/kubeflow', icon: 'cloud' },
-  airflow:  { name: 'Airflow',   color: 'airflow',  target: 1, gh: 'https://github.com/apache/airflow', icon: 'wind' }
+  ml4sci:   { name: 'ML4SCI',   color: 'ml4sci',   target: 3, gh: 'https://github.com/ML4SCI',          icon: 'flask' },
+  kubeflow: { name: 'Kubeflow', color: 'kubeflow', target: 2, gh: 'https://github.com/kubeflow',         icon: 'cloud' },
+  airflow:  { name: 'Airflow',  color: 'airflow',  target: 1, gh: 'https://github.com/apache/airflow',   icon: 'wind'  },
 };
 
 const TYPE_BADGE = {
@@ -1790,47 +1323,75 @@ const PLATFORM_BADGE = {
   discord: '<span class="badge badge-blue">Discord</span>',
 };
 
-// ─── DEADLINE COUNTER ────────────────────────────────────────────────────────
+const DAY_LABELS = {
+  '1-2':   { title: '📌 Day 1–2',   sub: 'Setup & GitHub'        },
+  '3-4':   { title: '🤝 Day 3–4',   sub: 'Community Joining'     },
+  '5-6':   { title: '🔧 Day 5–6',   sub: 'First Contributions'   },
+  '7':     { title: '⚙️ Day 7',     sub: 'Feature PRs'           },
+  '8':     { title: '💬 Day 8',     sub: 'Mentor Contact'         },
+  '9-10':  { title: '📝 Day 9–10',  sub: 'Proposal Writing'       },
+  '11':    { title: '🚀 Day 11',    sub: 'Additional PRs'         },
+  '12':    { title: '✍️ Day 12',    sub: 'Proposal Polish'        },
+  '13-14': { title: '✅ Day 13–14', sub: 'Final Submission'       },
+};
+
+const ORG_LINKS = {
+  ml4sci: [
+    { label: 'ML4DQM Repo',      url: 'https://github.com/ML4SCI/ML4DQM' },
+    { label: 'ML4SCI Org',       url: 'https://github.com/ML4SCI' },
+    { label: 'GSoC Page',        url: 'https://summerofcode.withgoogle.com/programs/2026/organizations/machine-learning-for-science-ml4sci' },
+    { label: 'Good First Issues',url: 'https://github.com/search?q=org%3AML4SCI+label%3A%22good+first+issue%22&type=issues' },
+    { label: 'DeepLense Repo',   url: 'https://github.com/ML4SCI/DeepLense' },
+    { label: 'CERN Open Data',   url: 'https://opendata.cern.ch' },
+  ],
+  kubeflow: [
+    { label: 'Kubeflow Pipelines', url: 'https://github.com/kubeflow/pipelines' },
+    { label: 'Kubeflow Org',       url: 'https://github.com/kubeflow' },
+    { label: 'Good First Issues',  url: 'https://github.com/search?q=org%3Akubeflow+label%3A%22good+first+issue%22&type=issues' },
+    { label: 'Kubeflow Website',   url: 'https://www.kubeflow.org' },
+    { label: 'Kubeflow Slack',     url: 'https://kubeflow.slack.com' },
+  ],
+  airflow: [
+    { label: 'Airflow GitHub',      url: 'https://github.com/apache/airflow' },
+    { label: 'Good First Issues',   url: 'https://github.com/apache/airflow/issues?q=label%3A%22good+first+issue%22' },
+    { label: 'Airflow Docs',        url: 'https://airflow.apache.org/docs/' },
+    { label: 'Dev Mailing List',    url: 'https://lists.apache.org/list.html?dev@airflow.apache.org' },
+    { label: 'Contributing Guide',  url: 'https://github.com/apache/airflow/blob/main/CONTRIBUTING.rst' },
+  ],
+};
+
+// ─── DEADLINE ────────────────────────────────────────────────────────────────
 
 function updateDeadline() {
-  const deadline = new Date('2026-03-31T23:59:59');
-  const now = new Date();
-  const diff = deadline - now;
+  const diff = new Date('2026-03-31T23:59:59') - new Date();
   if (diff <= 0) { document.getElementById('deadlineCountdown').textContent = 'DEADLINE!'; return; }
-  const days = Math.floor(diff / 86400000);
-  const hrs = Math.floor((diff % 86400000) / 3600000);
-  document.getElementById('deadlineCountdown').textContent = `${days}d ${hrs}h left`;
+  const d = Math.floor(diff / 86400000);
+  const h = Math.floor((diff % 86400000) / 3600000);
+  document.getElementById('deadlineCountdown').textContent = `${d}d ${h}h left`;
 }
 
 // ─── INIT ────────────────────────────────────────────────────────────────────
 
 function initApp() {
-  const session = ls('gsoc_session');
-  if (!session) return;
   if (!ls('gsoc_data')) saveData(getDefaultData());
   updateDeadline();
   setInterval(updateDeadline, 60000);
   renderDashboard();
-
-  // set today's date as default in modals
-  const today = new Date().toISOString().split('T')[0];
-  document.getElementById('prDate').value = today;
-  document.getElementById('mentorDate').value = today;
+  document.getElementById('prDate').value     = new Date().toISOString().split('T')[0];
+  document.getElementById('mentorDate').value = new Date().toISOString().split('T')[0];
 }
 
-// ─── RENDER DASHBOARD ────────────────────────────────────────────────────────
+// ─── DASHBOARD ───────────────────────────────────────────────────────────────
 
 function renderDashboard() {
-  const data = getData();
-  const prs = data.prs || [];
-  const merged = prs.filter(p => p.status === 'merged').length;
+  const data    = getData();
+  const prs     = data.prs || [];
+  const merged  = prs.filter(p => p.status === 'merged').length;
   const mentors = (data.mentors || []).length;
-  const sprints = Object.values(data.sprint || {});
-  const allTasks = sprints.flatMap(s => s.tasks);
+  const allTasks  = Object.values(data.sprint || {}).flatMap(s => s.tasks);
   const doneTasks = allTasks.filter(t => t.done).length;
   const sprintPct = allTasks.length ? Math.round(doneTasks / allTasks.length * 100) : 0;
 
-  // STATS
   document.getElementById('dashStats').innerHTML = `
     <div class="stat-card stat-accent-green">
       <div class="stat-label">Merged PRs</div>
@@ -1850,13 +1411,12 @@ function renderDashboard() {
     <div class="stat-card stat-accent-amber">
       <div class="stat-label">Total PRs</div>
       <div class="stat-value">${prs.length} <span class="unit">/ 5</span></div>
-      <div class="stat-sub">${prs.filter(p=>p.status==='review').length} in review</div>
+      <div class="stat-sub">${prs.filter(p => p.status === 'review').length} in review</div>
     </div>
   `;
 
-  // ORG CARDS
   document.getElementById('orgCards').innerHTML = Object.entries(ORG_META).map(([key, org]) => {
-    const orgPRs = prs.filter(p => p.org === key);
+    const orgPRs   = prs.filter(p => p.org === key);
     const orgMerged = orgPRs.filter(p => p.status === 'merged').length;
     return `
       <div class="org-card org-${key}" onclick="showPage('${key}')">
@@ -1871,27 +1431,25 @@ function renderDashboard() {
     `;
   }).join('');
 
-  // PROGRESS
   const mlPRs = prs.filter(p => p.org === 'ml4sci');
   const kfPRs = prs.filter(p => p.org === 'kubeflow');
   const afPRs = prs.filter(p => p.org === 'airflow');
 
-  document.getElementById('overallProgress').innerHTML = `
-    ${progRow('ML4SCI PRs', mlPRs.filter(p=>p.status==='merged').length, 3, 'var(--ml4sci)')}
-    ${progRow('Kubeflow PRs', kfPRs.filter(p=>p.status==='merged').length, 2, 'var(--kubeflow)')}
-    ${progRow('Airflow PRs', afPRs.filter(p=>p.status==='merged').length, 1, 'var(--airflow)')}
-    ${progRow('Sprint Tasks', doneTasks, allTasks.length, 'var(--accent)')}
-    ${progRow('Mentor Contact', mentors, 3, 'var(--accent2)')}
-  `;
+  document.getElementById('overallProgress').innerHTML = [
+    progRow('ML4SCI PRs',    mlPRs.filter(p=>p.status==='merged').length, 3, 'var(--ml4sci)'),
+    progRow('Kubeflow PRs',  kfPRs.filter(p=>p.status==='merged').length, 2, 'var(--kubeflow)'),
+    progRow('Airflow PRs',   afPRs.filter(p=>p.status==='merged').length, 1, 'var(--airflow)'),
+    progRow('Sprint Tasks',  doneTasks, allTasks.length, 'var(--accent)'),
+    progRow('Mentor Contact',mentors, 3, 'var(--accent2)'),
+  ].join('');
 
-  // TIMELINE
   document.getElementById('timeline').innerHTML = [
-    { date: 'Mar 11', title: 'Sprint Day 1 begins', color: 'var(--green)', done: true },
-    { date: 'Mar 16', title: 'Proposal window opens', color: 'var(--accent)', done: false },
-    { date: 'Mar 24', title: 'Sprint ends · Submit draft', color: 'var(--accent2)', done: false },
-    { date: 'Mar 31', title: '⚠️ Proposal Deadline', color: 'var(--red)', done: false },
-    { date: 'Apr 30', title: 'Results announced', color: 'var(--amber)', done: false },
-    { date: 'May 25', title: 'Coding starts', color: 'var(--blue)', done: false },
+    { date:'Mar 11', title:'Sprint Day 1 begins',         color:'var(--green)'  },
+    { date:'Mar 16', title:'Proposal window opens',        color:'var(--accent)' },
+    { date:'Mar 24', title:'Sprint ends · Submit draft',   color:'var(--accent2)'},
+    { date:'Mar 31', title:'⚠️ Proposal Deadline',         color:'var(--red)'    },
+    { date:'Apr 30', title:'Results announced',            color:'var(--amber)'  },
+    { date:'May 25', title:'Coding starts',                color:'var(--blue)'   },
   ].map(tl => `
     <div class="tl-item">
       <div class="tl-dot" style="background:${tl.color}"></div>
@@ -1900,7 +1458,6 @@ function renderDashboard() {
     </div>
   `).join('');
 
-  // ALL PRs TABLE
   renderPRTable('allPRsBody', prs, true);
 }
 
@@ -1915,42 +1472,16 @@ function progRow(label, val, max, color) {
   `;
 }
 
-// ─── RENDER ORG PAGE ─────────────────────────────────────────────────────────
+// ─── ORG PAGES ───────────────────────────────────────────────────────────────
 
 function renderOrgPage(org) {
-  const data = getData();
-  const prs = (data.prs || []).filter(p => p.org === org);
-  const meta = ORG_META[org];
-  const color = `var(--${org})`;
+  const data   = getData();
+  const prs    = (data.prs || []).filter(p => p.org === org);
+  const meta   = ORG_META[org];
+  const color  = `var(--${org})`;
   const merged = prs.filter(p => p.status === 'merged').length;
 
-  const ghLinks = {
-    ml4sci: [
-      { label: 'ML4DQM Repo', url: 'https://github.com/ML4SCI/ML4DQM' },
-      { label: 'ML4SCI Org', url: 'https://github.com/ML4SCI' },
-      { label: 'GSoC Page', url: 'https://summerofcode.withgoogle.com/programs/2026/organizations/machine-learning-for-science-ml4sci' },
-      { label: 'Good First Issues', url: 'https://github.com/search?q=org%3AML4SCI+label%3A%22good+first+issue%22&type=issues' },
-      { label: 'DeepLense Repo', url: 'https://github.com/ML4SCI/DeepLense' },
-      { label: 'CERN Open Data', url: 'https://opendata.cern.ch' },
-    ],
-    kubeflow: [
-      { label: 'Kubeflow Pipelines', url: 'https://github.com/kubeflow/pipelines' },
-      { label: 'Kubeflow Org', url: 'https://github.com/kubeflow' },
-      { label: 'Good First Issues', url: 'https://github.com/search?q=org%3Akubeflow+label%3A%22good+first+issue%22&type=issues' },
-      { label: 'Kubeflow Website', url: 'https://www.kubeflow.org' },
-      { label: 'Kubeflow Slack', url: 'https://kubeflow.slack.com' },
-    ],
-    airflow: [
-      { label: 'Airflow GitHub', url: 'https://github.com/apache/airflow' },
-      { label: 'Good First Issues', url: 'https://github.com/apache/airflow/issues?q=label%3A%22good+first+issue%22' },
-      { label: 'Airflow Docs', url: 'https://airflow.apache.org/docs/' },
-      { label: 'Dev Mailing List', url: 'https://lists.apache.org/list.html?dev@airflow.apache.org' },
-      { label: 'Contributing Guide', url: 'https://github.com/apache/airflow/blob/main/CONTRIBUTING.rst' },
-    ],
-  };
-
-  const container = document.getElementById(org + 'Content');
-  container.innerHTML = `
+  document.getElementById(org + 'Content').innerHTML = `
     <div class="stats-grid" style="grid-template-columns:repeat(3,1fr);">
       <div class="stat-card" style="border-bottom:2px solid ${color}">
         <div class="stat-label">Merged PRs</div>
@@ -1965,7 +1496,6 @@ function renderOrgPage(org) {
         <div class="stat-value">${prs.filter(p=>p.status==='review').length}</div>
       </div>
     </div>
-
     <div class="two-col" style="margin-top:24px">
       <div>
         <div class="section-head">
@@ -1983,7 +1513,7 @@ function renderOrgPage(org) {
           <div class="section-title"><i class="fas fa-link"></i> Key Links</div>
         </div>
         <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;">
-          ${ghLinks[org].map(l => `
+          ${ORG_LINKS[org].map(l => `
             <div style="padding:11px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;">
               <span style="font-size:13px;color:var(--text2)">${l.label}</span>
               <a href="${l.url}" target="_blank" class="link-cell"><i class="fas fa-external-link-alt"></i> Open</a>
@@ -1993,34 +1523,33 @@ function renderOrgPage(org) {
       </div>
     </div>
   `;
-
   renderPRTable(org + 'PRsBody', prs, false);
 }
 
-// ─── PR TABLE RENDERER ───────────────────────────────────────────────────────
+// ─── PR TABLE ────────────────────────────────────────────────────────────────
 
 function renderPRTable(tbodyId, prs, showOrg) {
   const tbody = document.getElementById(tbodyId);
   if (!prs.length) {
-    tbody.innerHTML = `<tr><td colspan="${showOrg ? 8 : 7}" style="padding:32px;text-align:center;color:var(--text3);font-size:12px;font-style:italic;">No PRs yet. Add your first one above.</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="${showOrg ? 8 : 7}" style="padding:32px;text-align:center;color:var(--text3);font-size:12px;font-style:italic;">No PRs yet — add your first one above.</td></tr>`;
     return;
   }
   tbody.innerHTML = prs.map(pr => `
     <tr>
-      <td style="font-family:'Space Mono',monospace;font-size:10.5px;color:var(--text3)">${fmtDate(pr.date)}</td>
+      <td style="font-family:'DM Mono',monospace;font-size:10.5px;color:var(--text3)">${fmtDate(pr.date)}</td>
       ${showOrg ? `<td><span class="badge badge-${pr.org}">${ORG_META[pr.org]?.name || pr.org}</span></td>` : ''}
       <td class="td-main">${pr.repo || '—'}</td>
       <td>${TYPE_BADGE[pr.type] || pr.type}</td>
       <td style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${pr.desc || '—'}</td>
       <td>
-        ${pr.link ? `<a class="link-cell" href="${pr.link}" target="_blank"><i class="fas fa-code-branch"></i> PR</a>` : '<span class="link-none">—</span>'}
+        ${pr.link  ? `<a class="link-cell" href="${pr.link}"  target="_blank"><i class="fas fa-code-branch"></i> PR</a>` : '<span class="link-none">—</span>'}
         ${pr.issue ? `&nbsp;<a class="link-cell" href="${pr.issue}" target="_blank" style="color:var(--blue)"><i class="fas fa-bug"></i> Issue</a>` : ''}
       </td>
       <td>${STATUS_BADGE[pr.status] || pr.status}</td>
       <td>
         <div class="row-actions">
           <button class="icon-btn edit" onclick="openPRModal('${pr.id}',null)" title="Edit"><i class="fas fa-pen"></i></button>
-          <button class="icon-btn del" onclick="deletePR('${pr.id}')" title="Delete"><i class="fas fa-trash"></i></button>
+          <button class="icon-btn del"  onclick="deletePR('${pr.id}')"         title="Delete"><i class="fas fa-trash"></i></button>
         </div>
       </td>
     </tr>
@@ -2029,52 +1558,49 @@ function renderPRTable(tbodyId, prs, showOrg) {
 
 // ─── PR MODAL ────────────────────────────────────────────────────────────────
 
-let prModalOrg = null;
-
 function openPRModal(editId, forOrg) {
-  prModalOrg = forOrg;
   const data = getData();
   if (editId) {
     const pr = data.prs.find(p => p.id === editId);
     if (!pr) return;
-    document.getElementById('prEditId').value = editId;
+    document.getElementById('prEditId').value  = editId;
     document.getElementById('prModalTitle').textContent = 'Edit Pull Request';
-    document.getElementById('prOrg').value = pr.org;
-    document.getElementById('prRepo').value = pr.repo || '';
-    document.getElementById('prDesc').value = pr.desc || '';
-    document.getElementById('prLink').value = pr.link || '';
-    document.getElementById('prIssue').value = pr.issue || '';
-    document.getElementById('prType').value = pr.type || 'docs';
-    document.getElementById('prStatus').value = pr.status || 'open';
-    document.getElementById('prDate').value = pr.date || '';
+    document.getElementById('prOrg').value     = pr.org;
+    document.getElementById('prRepo').value    = pr.repo   || '';
+    document.getElementById('prDesc').value    = pr.desc   || '';
+    document.getElementById('prLink').value    = pr.link   || '';
+    document.getElementById('prIssue').value   = pr.issue  || '';
+    document.getElementById('prType').value    = pr.type   || 'docs';
+    document.getElementById('prStatus').value  = pr.status || 'open';
+    document.getElementById('prDate').value    = pr.date   || '';
   } else {
-    document.getElementById('prEditId').value = '';
+    document.getElementById('prEditId').value  = '';
     document.getElementById('prModalTitle').textContent = 'Add Pull Request';
-    document.getElementById('prRepo').value = '';
-    document.getElementById('prDesc').value = '';
-    document.getElementById('prLink').value = '';
-    document.getElementById('prIssue').value = '';
-    document.getElementById('prType').value = 'docs';
-    document.getElementById('prStatus').value = 'open';
+    document.getElementById('prRepo').value    = '';
+    document.getElementById('prDesc').value    = '';
+    document.getElementById('prLink').value    = '';
+    document.getElementById('prIssue').value   = '';
+    document.getElementById('prType').value    = 'docs';
+    document.getElementById('prStatus').value  = 'open';
+    document.getElementById('prDate').value    = new Date().toISOString().split('T')[0];
     if (forOrg && forOrg !== 'all') document.getElementById('prOrg').value = forOrg;
-    document.getElementById('prDate').value = new Date().toISOString().split('T')[0];
   }
   document.getElementById('prModal').classList.add('open');
 }
 
 function savePR() {
-  const data = getData();
+  const data   = getData();
   const editId = document.getElementById('prEditId').value;
   const pr = {
-    id: editId || uid(),
-    org: document.getElementById('prOrg').value,
-    repo: document.getElementById('prRepo').value.trim(),
-    desc: document.getElementById('prDesc').value.trim(),
-    link: document.getElementById('prLink').value.trim(),
-    issue: document.getElementById('prIssue').value.trim(),
-    type: document.getElementById('prType').value,
+    id:     editId || uid(),
+    org:    document.getElementById('prOrg').value,
+    repo:   document.getElementById('prRepo').value.trim(),
+    desc:   document.getElementById('prDesc').value.trim(),
+    link:   document.getElementById('prLink').value.trim(),
+    issue:  document.getElementById('prIssue').value.trim(),
+    type:   document.getElementById('prType').value,
     status: document.getElementById('prStatus').value,
-    date: document.getElementById('prDate').value,
+    date:   document.getElementById('prDate').value,
   };
   if (!pr.repo || !pr.desc) { toast('Repository and description required.', 'info'); return; }
   if (editId) {
@@ -2086,11 +1612,7 @@ function savePR() {
   saveData(data);
   closeModal('prModal');
   toast(editId ? 'PR updated!' : 'PR added!');
-  const activePage = document.querySelector('.page.active')?.id;
-  if (activePage === 'page-dashboard') renderDashboard();
-  else if (activePage === 'page-ml4sci') renderOrgPage('ml4sci');
-  else if (activePage === 'page-kubeflow') renderOrgPage('kubeflow');
-  else if (activePage === 'page-airflow') renderOrgPage('airflow');
+  refreshActive();
 }
 
 function deletePR(id) {
@@ -2099,40 +1621,21 @@ function deletePR(id) {
   data.prs = data.prs.filter(p => p.id !== id);
   saveData(data);
   toast('PR deleted.');
-  const activePage = document.querySelector('.page.active')?.id;
-  if (activePage === 'page-dashboard') renderDashboard();
-  else if (activePage === 'page-ml4sci') renderOrgPage('ml4sci');
-  else if (activePage === 'page-kubeflow') renderOrgPage('kubeflow');
-  else if (activePage === 'page-airflow') renderOrgPage('airflow');
+  refreshActive();
 }
 
 // ─── SPRINT ──────────────────────────────────────────────────────────────────
 
-const DAY_LABELS = {
-  '1-2': { title: '📌 Day 1–2', sub: 'Setup & GitHub' },
-  '3-4': { title: '🤝 Day 3–4', sub: 'Community Joining' },
-  '5-6': { title: '🔧 Day 5–6', sub: 'First Contributions' },
-  '7':   { title: '⚙️ Day 7',   sub: 'Feature PRs' },
-  '8':   { title: '💬 Day 8',   sub: 'Mentor Contact' },
-  '9-10':{ title: '📝 Day 9–10',sub: 'Proposal Writing' },
-  '11':  { title: '🚀 Day 11',  sub: 'Additional PRs' },
-  '12':  { title: '✍️ Day 12',  sub: 'Proposal Polish' },
-  '13-14':{ title: '✅ Day 13–14', sub: 'Final Submission' },
-};
-
 function renderSprint() {
-  const data = getData();
+  const data   = getData();
   const sprint = data.sprint || {};
-  const grid = document.getElementById('sprintGrid');
 
-  grid.innerHTML = Object.entries(DAY_LABELS).map(([key, info]) => {
-    const s = sprint[key] || { tasks: [] };
-    const done = s.tasks.filter(t => t.done).length;
+  document.getElementById('sprintGrid').innerHTML = Object.entries(DAY_LABELS).map(([key, info]) => {
+    const s     = sprint[key] || { tasks: [] };
+    const done  = s.tasks.filter(t => t.done).length;
     const total = s.tasks.length;
-    const pct = total ? Math.round(done / total * 100) : 0;
-
-    const badgeClass = pct === 100 ? 'badge-green' : pct > 0 ? 'badge-amber' : 'badge-gray';
-    const badgeText = pct === 100 ? '✓ Done' : `${done}/${total}`;
+    const pct   = total ? Math.round(done / total * 100) : 0;
+    const badge = pct === 100 ? 'badge-green' : pct > 0 ? 'badge-amber' : 'badge-gray';
 
     return `
       <div class="sprint-card">
@@ -2141,9 +1644,9 @@ function renderSprint() {
             ${info.title}
             <span style="font-size:11px;color:var(--text3);font-weight:400;">${info.sub}</span>
           </div>
-          <span class="badge ${badgeClass}">${badgeText}</span>
+          <span class="badge ${badge}">${pct === 100 ? '✓ Done' : `${done}/${total}`}</span>
         </div>
-        <div class="sprint-body" id="sprint-tasks-${key}">
+        <div class="sprint-body">
           ${s.tasks.map(t => taskHTML(t, key)).join('')}
           ${total === 0 ? '<div style="color:var(--text3);font-size:12px;font-style:italic;">No tasks yet.</div>' : ''}
         </div>
@@ -2154,7 +1657,7 @@ function renderSprint() {
 
 function taskHTML(t, day) {
   return `
-    <div class="check-row ${t.done ? 'done' : ''}" id="task-${t.id}" onclick="toggleTask('${t.id}','${day}')">
+    <div class="check-row ${t.done ? 'done' : ''}" onclick="toggleTask('${t.id}','${day}')">
       <div class="checkbox"></div>
       <div class="check-text" style="flex:1">${t.text}</div>
       <button class="icon-btn del" style="opacity:0.4;flex-shrink:0;" onclick="event.stopPropagation();deleteTask('${t.id}','${day}')" title="Delete"><i class="fas fa-times"></i></button>
@@ -2164,21 +1667,15 @@ function taskHTML(t, day) {
 
 function toggleTask(taskId, day) {
   const data = getData();
-  const s = data.sprint[day];
-  if (!s) return;
-  const t = s.tasks.find(t => t.id === taskId);
-  if (t) t.done = !t.done;
-  saveData(data);
-  renderSprint();
+  const t = (data.sprint[day]?.tasks || []).find(t => t.id === taskId);
+  if (t) { t.done = !t.done; saveData(data); renderSprint(); }
 }
 
 function deleteTask(taskId, day) {
   const data = getData();
   if (data.sprint[day]) {
     data.sprint[day].tasks = data.sprint[day].tasks.filter(t => t.id !== taskId);
-    saveData(data);
-    renderSprint();
-    toast('Task removed.');
+    saveData(data); renderSprint(); toast('Task removed.');
   }
 }
 
@@ -2188,53 +1685,44 @@ function openAddTaskModal() {
 }
 
 function saveTask() {
-  const day = document.getElementById('taskDay').value;
+  const day  = document.getElementById('taskDay').value;
   const text = document.getElementById('taskText').value.trim();
   if (!text) { toast('Please enter a task.', 'info'); return; }
   const data = getData();
   if (!data.sprint[day]) data.sprint[day] = { tasks: [] };
   data.sprint[day].tasks.push({ id: uid(), text, done: false });
-  saveData(data);
-  closeModal('taskModal');
-  toast('Task added!');
-  renderSprint();
+  saveData(data); closeModal('taskModal'); toast('Task added!'); renderSprint();
 }
 
 // ─── MENTORS ─────────────────────────────────────────────────────────────────
 
 function renderMentors() {
-  const data = getData();
-  const list = document.getElementById('mentorsList');
+  const data    = getData();
+  const list    = document.getElementById('mentorsList');
   const mentors = data.mentors || [];
 
   if (!mentors.length) {
-    list.innerHTML = `
-      <div class="empty-state">
-        <i class="fas fa-user-tie"></i>
-        <p>No mentor interactions logged yet.<br>Click "Log Interaction" to add your first one.</p>
-      </div>
-    `;
+    list.innerHTML = `<div class="empty-state"><i class="fas fa-user-tie"></i><p>No mentor interactions logged yet.<br>Click "Log Interaction" to add your first one.</p></div>`;
     return;
   }
 
   list.innerHTML = mentors.map(m => {
-    const org = ORG_META[m.org];
-    const avatarColor = m.org === 'ml4sci' ? 'rgba(100,255,218,0.12)' : m.org === 'kubeflow' ? 'rgba(126,179,255,0.12)' : 'rgba(255,159,67,0.12)';
-    const avatarTextColor = m.org === 'ml4sci' ? 'var(--ml4sci)' : m.org === 'kubeflow' ? 'var(--kubeflow)' : 'var(--airflow)';
+    const avatarBg   = m.org === 'ml4sci' ? 'rgba(100,255,218,0.12)' : m.org === 'kubeflow' ? 'rgba(126,179,255,0.12)' : 'rgba(255,159,67,0.12)';
+    const avatarColor = m.org === 'ml4sci' ? 'var(--ml4sci)' : m.org === 'kubeflow' ? 'var(--kubeflow)' : 'var(--airflow)';
     return `
       <div class="mentor-card">
-        <div class="mentor-avatar" style="background:${avatarColor};color:${avatarTextColor}">${(m.name || '?')[0].toUpperCase()}</div>
+        <div class="mentor-avatar" style="background:${avatarBg};color:${avatarColor}">${(m.name||'?')[0].toUpperCase()}</div>
         <div class="mentor-body">
           <div class="mentor-name">${m.name || 'Unknown'}</div>
           <div class="mentor-msg">${m.notes || m.topic || '—'}</div>
           <div class="mentor-meta">
-            <span class="badge badge-${m.org}">${org?.name || m.org}</span>
+            <span class="badge badge-${m.org}">${ORG_META[m.org]?.name || m.org}</span>
             ${PLATFORM_BADGE[m.platform] || ''}
-            ${MENTOR_STATUS[m.status] || ''}
-            <span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--text3)">${fmtDate(m.date)}</span>
-            <div class="mentor-actions" style="margin-left:auto">
+            ${MENTOR_STATUS[m.status]    || ''}
+            <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--text3)">${fmtDate(m.date)}</span>
+            <div class="mentor-actions">
               <button class="icon-btn edit" onclick="openMentorModal('${m.id}')" title="Edit"><i class="fas fa-pen"></i></button>
-              <button class="icon-btn del" onclick="deleteMentor('${m.id}')" title="Delete"><i class="fas fa-trash"></i></button>
+              <button class="icon-btn del"  onclick="deleteMentor('${m.id}')"    title="Delete"><i class="fas fa-trash"></i></button>
             </div>
           </div>
         </div>
@@ -2248,41 +1736,41 @@ function openMentorModal(editId) {
   if (editId) {
     const m = (data.mentors || []).find(m => m.id === editId);
     if (!m) return;
-    document.getElementById('mentorEditId').value = editId;
+    document.getElementById('mentorEditId').value        = editId;
     document.getElementById('mentorModalTitle').textContent = 'Edit Interaction';
-    document.getElementById('mentorName').value = m.name || '';
-    document.getElementById('mentorOrg').value = m.org || 'ml4sci';
-    document.getElementById('mentorPlatform').value = m.platform || 'slack';
-    document.getElementById('mentorTopic').value = m.topic || '';
-    document.getElementById('mentorNotes').value = m.notes || '';
-    document.getElementById('mentorStatus').value = m.status || 'sent';
-    document.getElementById('mentorDate').value = m.date || '';
+    document.getElementById('mentorName').value          = m.name     || '';
+    document.getElementById('mentorOrg').value           = m.org      || 'ml4sci';
+    document.getElementById('mentorPlatform').value      = m.platform || 'slack';
+    document.getElementById('mentorTopic').value         = m.topic    || '';
+    document.getElementById('mentorNotes').value         = m.notes    || '';
+    document.getElementById('mentorStatus').value        = m.status   || 'sent';
+    document.getElementById('mentorDate').value          = m.date     || '';
   } else {
-    document.getElementById('mentorEditId').value = '';
+    document.getElementById('mentorEditId').value        = '';
     document.getElementById('mentorModalTitle').textContent = 'Log Interaction';
-    document.getElementById('mentorName').value = '';
-    document.getElementById('mentorOrg').value = 'ml4sci';
-    document.getElementById('mentorPlatform').value = 'slack';
-    document.getElementById('mentorTopic').value = '';
-    document.getElementById('mentorNotes').value = '';
-    document.getElementById('mentorStatus').value = 'sent';
-    document.getElementById('mentorDate').value = new Date().toISOString().split('T')[0];
+    document.getElementById('mentorName').value          = '';
+    document.getElementById('mentorOrg').value           = 'ml4sci';
+    document.getElementById('mentorPlatform').value      = 'slack';
+    document.getElementById('mentorTopic').value         = '';
+    document.getElementById('mentorNotes').value         = '';
+    document.getElementById('mentorStatus').value        = 'sent';
+    document.getElementById('mentorDate').value          = new Date().toISOString().split('T')[0];
   }
   document.getElementById('mentorModal').classList.add('open');
 }
 
 function saveMentor() {
-  const data = getData();
+  const data   = getData();
   const editId = document.getElementById('mentorEditId').value;
   const m = {
-    id: editId || uid(),
-    name: document.getElementById('mentorName').value.trim(),
-    org: document.getElementById('mentorOrg').value,
+    id:       editId || uid(),
+    name:     document.getElementById('mentorName').value.trim(),
+    org:      document.getElementById('mentorOrg').value,
     platform: document.getElementById('mentorPlatform').value,
-    topic: document.getElementById('mentorTopic').value.trim(),
-    notes: document.getElementById('mentorNotes').value.trim(),
-    status: document.getElementById('mentorStatus').value,
-    date: document.getElementById('mentorDate').value,
+    topic:    document.getElementById('mentorTopic').value.trim(),
+    notes:    document.getElementById('mentorNotes').value.trim(),
+    status:   document.getElementById('mentorStatus').value,
+    date:     document.getElementById('mentorDate').value,
   };
   if (!m.name) { toast('Mentor name required.', 'info'); return; }
   if (!data.mentors) data.mentors = [];
@@ -2292,26 +1780,21 @@ function saveMentor() {
   } else {
     data.mentors.push(m);
   }
-  saveData(data);
-  closeModal('mentorModal');
-  toast(editId ? 'Updated!' : 'Interaction logged!');
-  renderMentors();
+  saveData(data); closeModal('mentorModal'); toast(editId ? 'Updated!' : 'Interaction logged!'); renderMentors();
 }
 
 function deleteMentor(id) {
   if (!confirm('Remove this mentor log entry?')) return;
   const data = getData();
   data.mentors = (data.mentors || []).filter(m => m.id !== id);
-  saveData(data);
-  toast('Entry removed.');
-  renderMentors();
+  saveData(data); toast('Entry removed.'); renderMentors();
 }
 
 // ─── TEMPLATES ───────────────────────────────────────────────────────────────
 
 function copyTemplate(type) {
   const templates = {
-    intro: `Hello, I'm interested in contributing to the [Project] project.\nI have experience with ML pipelines, LSTM, and gradient boosting.\n\nI'd like to start by improving data preprocessing / evaluation pipelines.\nCould you point me to open issues that would be a good starting point?`,
+    intro:    `Hello, I'm interested in contributing to the [Project] project.\nI have experience with ML pipelines, LSTM, and gradient boosting.\n\nI'd like to start by improving data preprocessing / evaluation pipelines.\nCould you point me to open issues that would be a good starting point?`,
     proposal: `I've prepared a draft proposal for [Project].\nI've also made a few contributions to the repository.\n\nWould you be open to reviewing it and suggesting improvements?\nI'd really value your feedback on the technical design.`,
   };
   navigator.clipboard.writeText(templates[type]).then(() => toast('Copied to clipboard!'));
@@ -2319,22 +1802,15 @@ function copyTemplate(type) {
 
 // ─── MODAL UTILS ─────────────────────────────────────────────────────────────
 
-function closeModal(id) {
-  document.getElementById(id).classList.remove('open');
-}
-
-document.querySelectorAll('.modal-overlay').forEach(m => {
-  m.addEventListener('click', e => { if (e.target === m) m.classList.remove('open'); });
-});
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
 
 // ─── EXPORT / IMPORT ─────────────────────────────────────────────────────────
 
 function exportData() {
-  const data = getData();
-  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const blob = new Blob([JSON.stringify(getData(), null, 2)], { type: 'application/json' });
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  a.download = `gsoc-tracker-backup-${new Date().toISOString().split('T')[0]}.json`;
+  a.download = `gsoc-backup-${new Date().toISOString().split('T')[0]}.json`;
   a.click();
   toast('Data exported!');
 }
@@ -2344,14 +1820,8 @@ function importData(e) {
   if (!file) return;
   const reader = new FileReader();
   reader.onload = ev => {
-    try {
-      const data = JSON.parse(ev.target.result);
-      saveData(data);
-      toast('Data imported successfully!');
-      renderDashboard();
-    } catch (err) {
-      toast('Invalid JSON file.', 'info');
-    }
+    try { saveData(JSON.parse(ev.target.result)); toast('Data imported!'); renderDashboard(); }
+    catch { toast('Invalid JSON file.', 'info'); }
   };
   reader.readAsText(file);
   e.target.value = '';
@@ -2359,22 +1829,41 @@ function importData(e) {
 
 function resetAllData() {
   if (!confirm('This will delete ALL your PRs, sprint progress, and mentor logs. Are you sure?')) return;
-  saveData(getDefaultData());
-  toast('Data reset to defaults.');
-  renderDashboard();
+  saveData(getDefaultData()); toast('Data reset to defaults.'); renderDashboard();
+}
+
+// ─── HELPERS ─────────────────────────────────────────────────────────────────
+
+function refreshActive() {
+  const id = document.querySelector('.page.active')?.id?.replace('page-', '');
+  if (!id) return;
+  if (id === 'dashboard') renderDashboard();
+  else if (id === 'ml4sci' || id === 'kubeflow' || id === 'airflow') renderOrgPage(id);
 }
 
 // ─── BOOT ────────────────────────────────────────────────────────────────────
 
 window.addEventListener('DOMContentLoaded', () => {
+  // Close modals on overlay click
+  document.querySelectorAll('.modal-overlay').forEach(m => {
+    m.addEventListener('click', e => { if (e.target === m) m.classList.remove('open'); });
+  });
+
+  // Enter key on login
+  document.getElementById('loginPass').addEventListener('keydown', e => {
+    if (e.key === 'Enter') doLogin();
+  });
+
+  // Auto-login if session exists
   const session = ls('gsoc_session');
   if (session && session.user === _U) {
     document.getElementById('loginScreen').style.display = 'none';
-    document.getElementById('app').style.display = 'flex';
-    document.getElementById('app').style.flexDirection = 'column';
+    document.getElementById('app').style.display        = 'flex';
+    document.getElementById('app').style.flexDirection  = 'column';
     initApp();
   }
 });
+
 </script>
 </body>
 </html>
