@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@400;500&family=Fraunces:opsz,wght@9..144,300;9..144,600;9..144,700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #08090c;
+  --bg2: #0f1117;
+  --surface: #13151c;
+  --surface2: #1a1d27;
+  --surface3: #20253a;
+  --border: #1f2335;
+  --border2: #2a3050;
+  --text: #e2e8f5;
+  --text2: #8892b0;
+  --text3: #4a5280;
+  --accent: #64ffda;
+  --accent-dim: rgba(100,255,218,0.12);
+  --accent2: #ff6b9d;
+  --accent2-dim: rgba(255,107,157,0.12);
+  --blue: #7eb3ff;
+  --blue-dim: rgba(126,179,255,0.12);
+  --amber: #ffd27f;
+  --amber-dim: rgba(255,210,127,0.12);
+  --green: #69ff94;
+  --green-dim: rgba(105,255,148,0.12);
+  --red: #ff6b6b;
+  --red-dim: rgba(255,107,107,0.12);
+  --ml4sci: #64ffda;
+  --kubeflow: #7eb3ff;
+  --airflow: #ff9f43;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+
+.font-fraunces { font-family: 'Fraunces', serif; }
+.font-mono-dm  { font-family: 'DM Mono', monospace; }

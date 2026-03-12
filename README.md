@@ -1,48 +1,97 @@
 # GSoC 2026 Sprint Tracker
 
-A personal dashboard for tracking Google Summer of Code 2026 contributions across ML4SCI, Kubeflow, and Apache Airflow — built as a single-page web app with login, persistent storage, and full CRUD on everything.
-
----
+A personal dashboard to track GSoC 2026 contributions across ML4SCI, Kubeflow, and Apache Airflow.
 
 ## Features
 
-**Dashboard**
-Live stats for merged PRs, mentor interactions, sprint progress, and total contributions. Org cards give a quick overview of each organization's PR count vs target. Progress bars show exactly where you stand across all orgs. Key dates timeline keeps the March 31 deadline visible at all times.
+- Track pull requests across 3 organizations
+- Sprint task checklist
+- Mentor interaction log
+- Deadline countdown
+- Persistent data via Supabase
 
-**Organization Pages (ML4SCI · Kubeflow · Airflow)**
-Each org has its own dedicated page with individual PR stats, a filtered PR table, and a panel of pre-loaded key links — GitHub repos, good first issue searches, documentation, and community channels. Add, edit, and delete PRs directly from each org page or from the main dashboard.
+## Tech Stack
 
-**14-Day Sprint**
-Day-by-day checklist from March 11 to March 24. Check off tasks as you complete them. Add custom tasks to any day. Delete tasks you don't need. Progress badge on each card updates in real time.
+- Next.js 14 (App Router)
+- TypeScript
+- Supabase (PostgreSQL)
+- Tailwind CSS
+- Vercel (deployment)
 
-**Mentor Log**
-Log every mentor interaction with organization, platform (Slack, GitHub, Email, Discord), topic, notes, and reply status. Edit or delete any entry. Two copy-paste message templates for introductions and proposal review requests.
+## Setup
 
-**Data Management**
-Export all your data as a JSON file to back it up or move it to another device. Import a backup to restore everything instantly. Reset to default sprint tasks if needed.
+### 1. Clone the repo
+```bash
+git clone https://github.com/YOUR_USERNAME/YOUR_REPO.git
+cd YOUR_REPO
+```
 
----
+### 2. Install dependencies
+```bash
+npm install
+```
 
-## Editing the Code
+### 3. Set up environment variables
 
-The project is split into three files:
+Create a `.env.local` file:
+```env
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+```
 
-- `index.html` — page structure and modals only, no logic
-- `styles.css` — all visual styles, colors, layout
-- `app.js` — all data, auth, and render logic
+### 4. Set up Supabase
 
-**To change the deadline**, search `2026-03-31` in `app.js` and update it.
+Run this SQL in your Supabase SQL editor:
+```sql
+create table prs (
+  id text primary key,
+  org text,
+  repo text,
+  description text,
+  link text,
+  issue text,
+  type text,
+  status text,
+  date text,
+  created_at timestamptz default now()
+);
 
-**To change organizations or links**, edit the `ORG_META` and `ORG_LINKS` objects in `app.js`.
+create table mentors (
+  id text primary key,
+  name text,
+  org text,
+  platform text,
+  topic text,
+  notes text,
+  status text,
+  date text,
+  created_at timestamptz default now()
+);
 
-**To change sprint tasks**, edit the `getDefaultSprint()` function in `app.js`. Note: this only affects new installs. If data is already saved in the browser, export → edit → import.
+create table sprint_tasks (
+  id text primary key,
+  day text,
+  text text,
+  done boolean default false,
+  created_at timestamptz default now()
+);
 
-**To change colors or fonts**, all CSS variables are at the top of `styles.css` under `:root`.
+alter table prs disable row level security;
+alter table mentors disable row level security;
+alter table sprint_tasks disable row level security;
+```
 
-**To update credentials**, generate a new SHA-256 hash of your password (use `sha256sum` or any online tool) and replace `_H` in `app.js`. Update `_U` for the username.
+### 5. Run locally
+```bash
+npm run dev
+```
 
----
+Open [http://localhost:3000](http://localhost:3000)
 
-## Data Storage
+## Deployment
 
-Everything is saved in your browser's `localStorage`. No server, no database, no accounts — completely private. To use across devices, use Export → copy the JSON file → Import on the other device.
+Deployed on Vercel. Add environment variables in Vercel dashboard under Project Settings → Environment Variables.
+
+## License
+
+Private — personal use only.
