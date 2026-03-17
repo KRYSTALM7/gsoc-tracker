@@ -1,7 +1,7 @@
 export const ORG_META: Record<string, { name: string; target: number; icon: string; color: string }> = {
-  ml4sci:   { name: 'ML4SCI',   target: 3, icon: 'flask',  color: '#64ffda' },
-  kubeflow: { name: 'Kubeflow', target: 2, icon: 'cloud',  color: '#7eb3ff' },
-  airflow:  { name: 'Airflow',  target: 1, icon: 'wind',   color: '#ff9f43' },
+  ml4sci:   { name: 'ML4SCI',   target: 3, icon: 'flask',  color: '#4ecdc4' },
+  kubeflow: { name: 'Kubeflow', target: 2, icon: 'cloud',  color: '#6fa3e0' },
+  airflow:  { name: 'Airflow',  target: 1, icon: 'wind',   color: '#e8b86d' },
 }
 
 export const ORG_LINKS: Record<string, { label: string; url: string }[]> = {

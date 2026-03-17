@@ -38,9 +38,7 @@ export default function DashboardPage() {
     setTasks(Array.isArray(t) ? t : [])
   }
 
-  useEffect(() => {
-    load()
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => { load() }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   async function deletePR(id: string) {
     if (!confirm('Delete this PR?')) return
@@ -61,19 +59,46 @@ export default function DashboardPage() {
     { date: 'Mar 11', title: 'Sprint Day 1 begins',       color: 'var(--green)'   },
     { date: 'Mar 16', title: 'Proposal window opens',      color: 'var(--accent)'  },
     { date: 'Mar 24', title: 'Sprint ends · Submit draft', color: 'var(--accent2)' },
-    { date: 'Mar 31', title: '⚠️ Proposal Deadline',       color: 'var(--red)'     },
+    { date: 'Mar 31', title: 'Proposal Deadline',          color: 'var(--red)'     },
     { date: 'Apr 30', title: 'Results announced',          color: 'var(--amber)'   },
     { date: 'May 25', title: 'Coding starts',              color: 'var(--blue)'    },
+  ]
+
+  const STAT_CARDS = [
+    { label: 'Merged PRs',          value: merged,         unit: '/ 5',    sub: `${5 - merged} more needed`,                                   color: 'var(--green)'   },
+    { label: 'Mentor Interactions', value: mentors.length, unit: 'logged', sub: 'Target: 3+',                                                  color: 'var(--blue)'    },
+    { label: 'Sprint Progress',     value: sprintPct,      unit: '%',      sub: `${doneTasks} / ${tasks.length} done`,                         color: 'var(--accent2)' },
+    { label: 'Total PRs',           value: prs.length,     unit: '/ 5',    sub: `${prs.filter(p => p.status === 'review').length} in review`,  color: 'var(--amber)'   },
   ]
 
   return (
     <AuthGuard>
       <Topbar />
-      <div style={{ padding: 32, maxWidth: 1200, margin: '0 auto' }}>
+      <style>{`
+        .dash-wrap { padding: 28px 32px; max-width: 1200px; margin: 0 auto; }
+        .stat-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; margin-bottom: 28px; }
+        .org-grid  { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 28px; }
+        .two-col   { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 28px; }
+        .pr-table-wrap { overflow-x: auto; }
+        @media (max-width: 1024px) {
+          .stat-grid { grid-template-columns: repeat(2,1fr); }
+          .org-grid  { grid-template-columns: repeat(2,1fr); }
+        }
+        @media (max-width: 680px) {
+          .dash-wrap { padding: 16px; }
+          .stat-grid { grid-template-columns: repeat(2,1fr); gap: 10px; }
+          .org-grid  { grid-template-columns: 1fr; gap: 12px; }
+          .two-col   { grid-template-columns: 1fr; }
+          .stat-value-num { font-size: 22px !important; }
+          .page-title { font-size: 22px !important; }
+          .pr-table  { min-width: 580px; }
+        }
+      `}</style>
 
+      <div className="dash-wrap">
         {/* Hero */}
-        <div style={{ marginBottom: 32 }}>
-          <div style={{ fontFamily: 'Fraunces, serif', fontSize: 30, fontWeight: 600, color: 'var(--text)', marginBottom: 6 }}>
+        <div style={{ marginBottom: 28 }}>
+          <div className="page-title" style={{ fontFamily: 'Fraunces, serif', fontSize: 28, fontWeight: 600, color: 'var(--text)', marginBottom: 6 }}>
             GSoC 2026 <span style={{ color: 'var(--accent)' }}>Sprint</span>
           </div>
           <div style={{ fontSize: 13, color: 'var(--text3)' }}>
@@ -84,18 +109,13 @@ export default function DashboardPage() {
         </div>
 
         {/* Stat Cards */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 12, marginBottom: 28 }}>
-          {[
-            { label: 'Merged PRs',          value: merged,         unit: '/ 5',  sub: `${5 - merged} more needed`,                                    color: 'var(--green)'   },
-            { label: 'Mentor Interactions', value: mentors.length, unit: 'logged', sub: 'Target: 3+',                                                  color: 'var(--blue)'    },
-            { label: 'Sprint Progress',     value: sprintPct,      unit: '%',    sub: `${doneTasks} / ${tasks.length} done`,                           color: 'var(--accent2)' },
-            { label: 'Total PRs',           value: prs.length,     unit: '/ 5',  sub: `${prs.filter(p => p.status === 'review').length} in review`,    color: 'var(--amber)'   },
-          ].map((s, i) => (
-            <div key={i} style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 10, padding: '18px 20px', position: 'relative', overflow: 'hidden' }}>
-              <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 1, background: `linear-gradient(90deg, ${s.color}, transparent)` }} />
+        <div className="stat-grid">
+          {STAT_CARDS.map((s, i) => (
+            <div key={i} style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 12, padding: '18px 20px', position: 'relative', overflow: 'hidden', minWidth: 0 }}>
+              <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 2, background: `linear-gradient(90deg, ${s.color}, transparent)` }} />
               <div style={{ fontSize: 10, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--text3)', marginBottom: 10 }}>{s.label}</div>
-              <div style={{ fontFamily: 'Fraunces, serif', fontSize: 28, fontWeight: 600, color: 'var(--text)', lineHeight: 1, marginBottom: 4 }}>
-                {s.value} <span style={{ fontSize: 14, color: 'var(--text3)', fontWeight: 400, fontFamily: 'DM Sans' }}>{s.unit}</span>
+              <div className="stat-value-num" style={{ fontFamily: 'Fraunces, serif', fontSize: 26, fontWeight: 600, color: 'var(--text)', lineHeight: 1, marginBottom: 4 }}>
+                {s.value} <span style={{ fontSize: 13, color: 'var(--text3)', fontWeight: 400, fontFamily: 'DM Sans' }}>{s.unit}</span>
               </div>
               <div style={{ fontSize: 11, color: 'var(--text3)' }}>{s.sub}</div>
             </div>
@@ -103,21 +123,24 @@ export default function DashboardPage() {
         </div>
 
         {/* Org Cards */}
-        <div style={{ fontSize: 15, fontWeight: 600, color: 'var(--text)', marginBottom: 14 }}>🏢 Organizations</div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 16, marginBottom: 28 }}>
+        <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--text)', marginBottom: 12 }}>Organizations</div>
+        <div className="org-grid">
           {Object.entries(ORG_META).map(([key, org]) => {
             const orgPRs    = prs.filter(p => p.org === key)
             const orgMerged = orgPRs.filter(p => p.status === 'merged').length
             return (
               <div key={key} onClick={() => router.push(`/org/${key}`)}
-                style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 10, padding: 20, cursor: 'pointer', position: 'relative', overflow: 'hidden' }}>
+                style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 12, padding: '18px 20px', cursor: 'pointer', position: 'relative', overflow: 'hidden', transition: 'border-color 0.2s' }}
+                onMouseEnter={e => (e.currentTarget.style.borderColor = 'var(--border2)')}
+                onMouseLeave={e => (e.currentTarget.style.borderColor = 'var(--border)')}
+              >
                 <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 2, background: org.color }} />
                 <div style={{ fontSize: 15, fontWeight: 700, color: org.color, marginBottom: 4 }}>{org.name}</div>
-                <div style={{ fontSize: 12, color: 'var(--text3)', marginBottom: 14 }}>Target: {org.target} PR{org.target > 1 ? 's' : ''}</div>
-                <div style={{ display: 'flex', gap: 16 }}>
+                <div style={{ fontSize: 12, color: 'var(--text3)', marginBottom: 16 }}>Target: {org.target} PR{org.target > 1 ? 's' : ''}</div>
+                <div style={{ display: 'flex', gap: 20 }}>
                   {[{ label: 'Merged', val: orgMerged }, { label: 'Total', val: orgPRs.length }, { label: 'Goal', val: org.target }].map((s, i) => (
                     <div key={i} style={{ fontSize: 11, color: 'var(--text3)' }}>
-                      <strong style={{ fontSize: 20, fontWeight: 700, color: 'var(--text)', display: 'block', lineHeight: 1.1 }}>{s.val}</strong>
+                      <strong style={{ fontSize: 20, fontWeight: 700, color: 'var(--text)', display: 'block', lineHeight: 1.2 }}>{s.val}</strong>
                       {s.label}
                     </div>
                   ))}
@@ -128,10 +151,10 @@ export default function DashboardPage() {
         </div>
 
         {/* Progress + Timeline */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 28 }}>
+        <div className="two-col">
           <div>
-            <div style={{ fontSize: 15, fontWeight: 600, color: 'var(--text)', marginBottom: 14 }}>📈 Overall Progress</div>
-            <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 10, padding: '20px 22px' }}>
+            <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--text)', marginBottom: 12 }}>Overall Progress</div>
+            <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 12, padding: '20px 22px' }}>
               {[
                 { label: 'ML4SCI PRs',     val: prs.filter(p => p.org === 'ml4sci'   && p.status === 'merged').length, max: 3, color: 'var(--ml4sci)'  },
                 { label: 'Kubeflow PRs',   val: prs.filter(p => p.org === 'kubeflow' && p.status === 'merged').length, max: 2, color: 'var(--kubeflow)' },
@@ -142,9 +165,9 @@ export default function DashboardPage() {
                 const pct = r.max > 0 ? Math.min(100, Math.round(r.val / r.max * 100)) : 0
                 return (
                   <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: i < 4 ? 14 : 0 }}>
-                    <div style={{ fontSize: 12, color: 'var(--text2)', width: 150, flexShrink: 0 }}>{r.label}</div>
-                    <div style={{ flex: 1, height: 5, background: 'var(--border2)', borderRadius: 3, overflow: 'hidden' }}>
-                      <div style={{ width: `${pct}%`, height: '100%', background: r.color, borderRadius: 3 }} />
+                    <div style={{ fontSize: 12, color: 'var(--text2)', width: 130, flexShrink: 0 }}>{r.label}</div>
+                    <div style={{ flex: 1, height: 4, background: 'var(--border2)', borderRadius: 2, overflow: 'hidden' }}>
+                      <div style={{ width: `${pct}%`, height: '100%', background: r.color, borderRadius: 2, transition: 'width 0.6s ease' }} />
                     </div>
                     <div style={{ fontFamily: 'DM Mono, monospace', fontSize: 10, color: 'var(--text3)', width: 36, textAlign: 'right' }}>{r.val}/{r.max}</div>
                   </div>
@@ -154,13 +177,13 @@ export default function DashboardPage() {
           </div>
 
           <div>
-            <div style={{ fontSize: 15, fontWeight: 600, color: 'var(--text)', marginBottom: 14 }}>🗓 Key Dates</div>
-            <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 10, padding: '20px 20px 20px 36px', position: 'relative' }}>
+            <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--text)', marginBottom: 12 }}>Key Dates</div>
+            <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 12, padding: '20px 20px 20px 36px', position: 'relative' }}>
               <div style={{ position: 'absolute', left: 22, top: 28, bottom: 28, width: 1, background: 'var(--border2)' }} />
               {TIMELINE.map((tl, i) => (
-                <div key={i} style={{ position: 'relative', paddingBottom: i < TIMELINE.length - 1 ? 18 : 0 }}>
-                  <div style={{ position: 'absolute', left: -20, top: 4, width: 10, height: 10, borderRadius: '50%', background: tl.color, border: '2px solid var(--surface)' }} />
-                  <div style={{ fontFamily: 'DM Mono, monospace', fontSize: 10, color: 'var(--text3)', marginBottom: 2 }}>{tl.date}</div>
+                <div key={i} style={{ position: 'relative', paddingBottom: i < TIMELINE.length - 1 ? 16 : 0 }}>
+                  <div style={{ position: 'absolute', left: -20, top: 4, width: 9, height: 9, borderRadius: '50%', background: tl.color, border: '2px solid var(--surface)' }} />
+                  <div style={{ fontFamily: 'DM Mono, monospace', fontSize: 10, color: 'var(--text3)', marginBottom: 1 }}>{tl.date}</div>
                   <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--text)' }}>{tl.title}</div>
                 </div>
               ))}
@@ -169,19 +192,19 @@ export default function DashboardPage() {
         </div>
 
         {/* All PRs */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 14 }}>
-          <div style={{ fontSize: 15, fontWeight: 600, color: 'var(--text)' }}>🔀 All Pull Requests</div>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
+          <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--text)' }}>All Pull Requests</div>
           <button onClick={() => setShowPRModal(true)}
-            style={{ padding: '6px 14px', background: 'var(--accent-dim)', border: '1px solid rgba(100,255,218,0.3)', borderRadius: 6, color: 'var(--accent)', fontSize: 12, cursor: 'pointer', fontFamily: 'DM Sans' }}>
+            style={{ padding: '6px 14px', background: 'var(--accent-dim)', border: '1px solid rgba(78,205,196,0.3)', borderRadius: 6, color: 'var(--accent)', fontSize: 12, cursor: 'pointer', fontFamily: 'DM Sans' }}>
             + Add PR
           </button>
         </div>
 
         {prs.length === 0
-          ? <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 10, padding: 32, textAlign: 'center', color: 'var(--text3)', fontSize: 12, fontStyle: 'italic' }}>No PRs yet — add your first one above.</div>
+          ? <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 12, padding: 32, textAlign: 'center', color: 'var(--text3)', fontSize: 12, fontStyle: 'italic' }}>No PRs yet — add your first one.</div>
           : (
-            <div style={{ border: '1px solid var(--border)', borderRadius: 10, overflow: 'hidden', background: 'var(--surface)' }}>
-              <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
+            <div className="pr-table-wrap" style={{ border: '1px solid var(--border)', borderRadius: 12, overflow: 'hidden', background: 'var(--surface)' }}>
+              <table className="pr-table" style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
                 <thead>
                   <tr style={{ background: 'var(--surface2)', borderBottom: '1px solid var(--border)' }}>
                     {['Date','Org','Repo','Type','Description','Links','Status',''].map((h, i) => (
@@ -192,27 +215,27 @@ export default function DashboardPage() {
                 <tbody>
                   {prs.map(pr => (
                     <tr key={pr.id} style={{ borderBottom: '1px solid var(--border)' }}>
-                      <td style={{ padding: '11px 14px', fontFamily: 'DM Mono, monospace', fontSize: 10.5, color: 'var(--text3)' }}>{fmtDate(pr.date)}</td>
+                      <td style={{ padding: '11px 14px', fontFamily: 'DM Mono, monospace', fontSize: 10.5, color: 'var(--text3)', whiteSpace: 'nowrap' }}>{fmtDate(pr.date)}</td>
                       <td style={{ padding: '11px 14px' }}>
-                        <span style={{ padding: '3px 9px', borderRadius: 20, fontSize: 10.5, fontWeight: 600, background: `${ORG_META[pr.org]?.color}1a`, color: ORG_META[pr.org]?.color }}>
+                        <span style={{ padding: '3px 9px', borderRadius: 20, fontSize: 10.5, fontWeight: 600, background: `${ORG_META[pr.org]?.color}1a`, color: ORG_META[pr.org]?.color, whiteSpace: 'nowrap' }}>
                           {ORG_META[pr.org]?.name || pr.org}
                         </span>
                       </td>
-                      <td style={{ padding: '11px 14px', color: 'var(--text)', fontWeight: 500 }}>{pr.repo || '—'}</td>
+                      <td style={{ padding: '11px 14px', color: 'var(--text)', fontWeight: 500, whiteSpace: 'nowrap' }}>{pr.repo || '—'}</td>
                       <td style={{ padding: '11px 14px' }}>
                         <span style={{ padding: '3px 9px', borderRadius: 20, fontSize: 10.5, fontWeight: 600, background: `${TYPE_COLOR[pr.type]}22`, color: TYPE_COLOR[pr.type] }}>{pr.type}</span>
                       </td>
-                      <td style={{ padding: '11px 14px', color: 'var(--text2)', maxWidth: 220, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{pr.description || '—'}</td>
-                      <td style={{ padding: '11px 14px' }}>
-                        {pr.link  && <a href={pr.link}  target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent)', fontFamily: 'DM Mono, monospace', fontSize: 11, textDecoration: 'none' }}>PR ↗</a>}
-                        {pr.issue && <a href={pr.issue} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--blue)',   fontFamily: 'DM Mono, monospace', fontSize: 11, textDecoration: 'none', marginLeft: 8 }}>Issue ↗</a>}
+                      <td style={{ padding: '11px 14px', color: 'var(--text2)', maxWidth: 200, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{pr.description || '—'}</td>
+                      <td style={{ padding: '11px 14px', whiteSpace: 'nowrap' }}>
+                        {pr.link  && <a href={pr.link}  target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent)', fontFamily: 'DM Mono, monospace', fontSize: 11, textDecoration: 'none', marginRight: 8 }}>PR ↗</a>}
+                        {pr.issue && <a href={pr.issue} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--blue)',   fontFamily: 'DM Mono, monospace', fontSize: 11, textDecoration: 'none' }}>Issue ↗</a>}
                         {!pr.link && !pr.issue && <span style={{ color: 'var(--text3)', fontSize: 11 }}>—</span>}
                       </td>
                       <td style={{ padding: '11px 14px' }}>
-                        <span style={{ padding: '3px 9px', borderRadius: 20, fontSize: 10.5, fontWeight: 600, background: `${STATUS_COLOR[pr.status]}22`, color: STATUS_COLOR[pr.status] }}>{pr.status}</span>
+                        <span style={{ padding: '3px 9px', borderRadius: 20, fontSize: 10.5, fontWeight: 600, background: `${STATUS_COLOR[pr.status]}22`, color: STATUS_COLOR[pr.status], whiteSpace: 'nowrap' }}>{pr.status}</span>
                       </td>
                       <td style={{ padding: '11px 14px' }}>
-                        <div style={{ display: 'flex', gap: 6 }}>
+                        <div style={{ display: 'flex', gap: 5 }}>
                           <button onClick={() => setEditingPR(pr)} style={{ width: 26, height: 26, borderRadius: 5, border: 'none', background: 'var(--surface3)', color: 'var(--text3)', cursor: 'pointer', fontSize: 11 }}>✏️</button>
                           <button onClick={() => deletePR(pr.id)}  style={{ width: 26, height: 26, borderRadius: 5, border: 'none', background: 'var(--surface3)', color: 'var(--text3)', cursor: 'pointer', fontSize: 11 }}>🗑</button>
                         </div>

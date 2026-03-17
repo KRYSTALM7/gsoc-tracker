@@ -84,7 +84,7 @@ export default function Topbar() {
       {/* ── TOPBAR ── */}
       <div style={{
         position: 'sticky', top: 0, zIndex: 100,
-        background: 'rgba(8,9,12,0.92)',
+        background: 'rgba(17,19,24,0.95)',
         backdropFilter: 'blur(14px)',
         borderBottom: '1px solid var(--border)',
         padding: '0 20px',
