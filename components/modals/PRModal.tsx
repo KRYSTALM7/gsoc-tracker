@@ -3,7 +3,11 @@ import { useState } from 'react'
 import type { PR } from '@/lib/types'
 import { uid } from '@/lib/utils'
 
-const ORGS   = ['ml4sci', 'kubeflow', 'airflow']
+const ORGS: { key: string; label: string }[] = [
+  { key: 'ml4sci',          label: 'ML4SCI'          },
+  { key: 'numfocus_pymc',   label: 'NumFOCUS (PyMC)' },
+  { key: 'apache_fineract', label: 'Apache Fineract'  },
+]
 const TYPES  = ['docs', 'bug', 'feature', 'test', 'refactor']
 const STATUSES = ['planned', 'open', 'review', 'merged', 'closed']
 
@@ -40,7 +44,7 @@ export default function PRModal({ pr, onClose, onSave, defaultOrg }: { pr?: PR; 
 
         <Label>Organization</Label>
         <select value={form.org} onChange={e => set('org', e.target.value)} style={F}>
-          {ORGS.map(o => <option key={o} value={o}>{o}</option>)}
+          {ORGS.map(o => <option key={o.key} value={o.key}>{o.label}</option>)}
         </select>
 
         <Label>Repository</Label>

@@ -4,12 +4,12 @@ import { useEffect, useState } from 'react'
 import { getDeadlineCountdown } from '@/lib/utils'
 
 const NAV = [
-  { id: 'dashboard', label: 'Dashboard', href: '/dashboard' },
-  { id: 'ml4sci',    label: 'ML4SCI',    href: '/org/ml4sci' },
-  { id: 'kubeflow',  label: 'Kubeflow',  href: '/org/kubeflow' },
-  { id: 'airflow',   label: 'Airflow',   href: '/org/airflow' },
-  { id: 'sprint',    label: 'Sprint',    href: '/sprint' },
-  { id: 'mentors',   label: 'Mentors',   href: '/mentors' },
+  { id: 'dashboard',       label: 'Dashboard',       href: '/dashboard'            },
+  { id: 'ml4sci',          label: 'ML4SCI',          href: '/org/ml4sci'           },
+  { id: 'numfocus_pymc',   label: 'NumFOCUS (PyMC)', href: '/org/numfocus_pymc'    },
+  { id: 'apache_fineract', label: 'Apache Fineract', href: '/org/apache_fineract'  },
+  { id: 'sprint',          label: 'Sprint',          href: '/sprint'               },
+  { id: 'mentors',         label: 'Mentors',         href: '/mentors'              },
 ]
 
 export default function Topbar() {

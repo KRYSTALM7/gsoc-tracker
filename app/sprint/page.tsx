@@ -62,7 +62,7 @@ export default function SprintPage() {
         <div style={{ fontSize: 13, color: 'var(--text3)', marginBottom: 20 }}>Day 1 = March 11 · Goal: 5 PRs + 1 Proposal + Mentor contact</div>
 
         <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderLeft: '3px solid var(--amber)', borderRadius: '0 10px 10px 0', padding: '12px 16px', fontSize: 12.5, color: 'var(--text2)', lineHeight: 1.6, marginBottom: 20 }}>
-          <strong style={{ color: 'var(--text)' }}>Target:</strong> 2–3 PRs in ML4SCI · 1–2 PRs in Kubeflow · 1 PR in Apache Airflow · Submit proposal by March 24 · <strong style={{ color: 'var(--text)' }}>Final deadline: March 31</strong>
+          <strong style={{ color: 'var(--text)' }}>Target:</strong> 2–3 PRs in ML4SCI · 1–2 PRs in NumFOCUS (PyMC) · 1 PR in Apache Fineract · Submit proposal by March 24 · <strong style={{ color: 'var(--text)' }}>Final deadline: March 31</strong>
         </div>
 
         <div className="sprint-grid">

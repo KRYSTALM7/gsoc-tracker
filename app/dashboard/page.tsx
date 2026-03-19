@@ -102,7 +102,7 @@ export default function DashboardPage() {
             GSoC 2026 <span style={{ color: 'var(--accent)' }}>Sprint</span>
           </div>
           <div style={{ fontSize: 13, color: 'var(--text3)' }}>
-            March 11 → March 31 · ML4SCI · Kubeflow · Apache Airflow ·{' '}
+            March 11 → March 31 · ML4SCI · NumFOCUS (PyMC) · Apache Fineract ·{' '}
             <a href="https://github.com/KRYSTALM7" target="_blank" rel="noopener noreferrer"
               style={{ color: 'var(--accent)', textDecoration: 'none' }}>@KRYSTALM7</a>
           </div>
@@ -156,9 +156,9 @@ export default function DashboardPage() {
             <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--text)', marginBottom: 12 }}>Overall Progress</div>
             <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 12, padding: '20px 22px' }}>
               {[
-                { label: 'ML4SCI PRs',     val: prs.filter(p => p.org === 'ml4sci'   && p.status === 'merged').length, max: 3, color: 'var(--ml4sci)'  },
-                { label: 'Kubeflow PRs',   val: prs.filter(p => p.org === 'kubeflow' && p.status === 'merged').length, max: 2, color: 'var(--kubeflow)' },
-                { label: 'Airflow PRs',    val: prs.filter(p => p.org === 'airflow'  && p.status === 'merged').length, max: 1, color: 'var(--airflow)'  },
+                { label: 'ML4SCI PRs',        val: prs.filter(p => p.org === 'ml4sci'          && p.status === 'merged').length, max: 3, color: 'var(--ml4sci)'          },
+                { label: 'NumFOCUS PRs',       val: prs.filter(p => p.org === 'numfocus_pymc'   && p.status === 'merged').length, max: 2, color: 'var(--accent2)'         },
+                { label: 'Fineract PRs',       val: prs.filter(p => p.org === 'apache_fineract' && p.status === 'merged').length, max: 1, color: 'var(--amber)'           },
                 { label: 'Sprint Tasks',   val: doneTasks,      max: tasks.length,   color: 'var(--accent)'  },
                 { label: 'Mentor Contact', val: mentors.length, max: 3,              color: 'var(--accent2)' },
               ].map((r, i) => {
